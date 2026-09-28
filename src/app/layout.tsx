@@ -15,8 +15,25 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const getBaseUrl = (): URL => {
+  let rawUrl =
+    process.env.NEXTAUTH_URL ||
+    (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "https://aagaaz-gu.vercel.app");
+
+  rawUrl = rawUrl.trim();
+  if (!rawUrl.startsWith("http://") && !rawUrl.startsWith("https://")) {
+    rawUrl = `https://${rawUrl}`;
+  }
+
+  try {
+    return new URL(rawUrl);
+  } catch {
+    return new URL("https://aagaaz-gu.vercel.app");
+  }
+};
+
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXTAUTH_URL || "https://aagaaz-gu.vercel.app"),
+  metadataBase: getBaseUrl(),
   title: "Aagaz 2K26 – Star Night | Geeta University",
   description: "Official entry pass and event platform for Aagaz 2K26 Star Night featuring Sunanda Sharma at Geeta University.",
   icons: {
