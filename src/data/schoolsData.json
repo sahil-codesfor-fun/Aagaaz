@@ -1,0 +1,453 @@
+{
+  "Delhi": {
+    "Central Delhi": [
+      "Faith Academy Sr Sec School Karol Bagh New Delhi",
+      "NK Bagrodia Public School Rohini North West Delhi",
+      "The Mann School Holambi Khurd North Delhi"
+    ],
+    "New Delhi": [
+      "Adarsh World School Dwarka South West Delhi",
+      "Arwachin Bharti Bhawwan Public School Vivek Vihar East Delhi",
+      "Arwachin International School Dilshad Garden North East Delhi",
+      "Bharti Public School Mayur Vihar East Delhi",
+      "Bharti Public School Swasthya Vihar East Delhi",
+      "Cambridge Foundation School Rajouri Garden West Delhi",
+      "Cambridge School Srinivaspuri New Delhi",
+      "DAV Public School Sreshtha Vihar East Delhi",
+      "De Indian Public School Rohini North West Delhi",
+      "Delhi International Public School Rohini North West Delhi",
+      "G.D. Goenka Karkardoma",
+      "Gyan Mandir Public School Naraina Vihar New Delhi",
+      "Happy Home Public School Rohini North West Delhi",
+      "Himalaya Public Sr Sec School Rohini North West Delhi",
+      "ITL Public School Dwarka New Delhi",
+      "KR Mangalam World School Vaishali Sec 6 Ghaziabad",
+      "Kalka Public School Alaknanda Kalkaji New Delhi",
+      "Kulachi Hansraj Model School Ashok Vihar North West Delhi",
+      "Lovely Public Sr Sec School Priyadarshini Vhar New Delhi",
+      "Maharaja Agrasen Model School Pitampura North West Delhi",
+      "Maxfort School Dwarka South West Delhi",
+      "Mount Carmel School Anand Niketan New Delhi",
+      "NC Jindal Public School Punjabi Bagh New Delhi",
+      "NK Bagrodia Public School Dwarka South West Delhi",
+      "Presidium School Indrapuram Ghaziabad",
+      "ST Francis De Sales School Janakpuri South West Delhi",
+      "ST Josephs Academy Savita Vihar East Delhi",
+      "ST Marks World School Paschim Vihar West Delhi",
+      "ST Mary Public School Dwarka New Delhi",
+      "Universal Public School Preet Vihar East Delhi",
+      "VSPK International School Rohini North West Delhi",
+      "VV DAV Public School New Delhi",
+      "Vikas Bharti Sr Sec School Sec 24 Rohini North West Delhi"
+    ]
+  },
+  "Haryana": {
+    "Assandh": [
+      "MM Public School Assandh"
+    ],
+    "Barwala": [
+      "DM Haryana Senior Secondary School, Barwala",
+      "Sunrise Modern Senior Secondary School"
+    ],
+    "Bhiwani": [
+      "Bhiwani Public School Bhiwani",
+      "Halwasiya Vidya Vihar Sr Sec School Bhiwani",
+      "Little Heart Public School Bhiwani",
+      "Shri Lal Bahadur Shastri Sr Sec School Bhiwani Haryana",
+      "adarsh senior secondary school bawani khera"
+    ],
+    "Faridabad": [
+      "DC Model School Faridabad",
+      "Vidya Niketan School Faridabad"
+    ],
+    "Fatehabad": [
+      "DAV Centenary Public School Tohana Fatehabad"
+    ],
+    "Gannaur": [
+      "Paryas international school",
+      "Shivalik Public Sr Sec School Gannaur"
+    ],
+    "Gohana": [
+      "Doon Public School Gohana",
+      "Om Public School Gohana"
+    ],
+    "Gurugram": [
+      "Gurugram Global Heights School Gurugram",
+      "Presidium School Gurgaon",
+      "Swiss Cottage School, Bijwasan, Gurugram",
+      "The Vivekanad School Gurugram",
+      "The Vivekananda School Gurugram"
+    ],
+    "Hisar": [
+      "Army Public School Hisar",
+      "Bharti Vidya mandir school hisar",
+      "DAV Police Public School Hisar",
+      "Delhi Public School Hisar",
+      "Guru Teg Bahadur Public School Hisar",
+      "New Laoria Vidya Mandir Sr Sec School Hisar",
+      "ST Josephs International School Hisar",
+      "Thakur Dass Bhargava Sr Sec Model School Hisar",
+      "govt sansakrti model school barwala"
+    ],
+    "Jhajjar": [
+      "DAV Police Public School Jhajjar",
+      "ST Francis De Sales Sr Sec School Jhajjar"
+    ],
+    "Jind": [
+      "Aadharshila Public School Jind",
+      "DAV Centenary Public School Jind",
+      "DAV Police Public School Kaithal",
+      "Gopal Vidya Mandir Sr Sec School Jind",
+      "Motilal Nehru MLN Public School Jind",
+      "SD Model Boys Sr Sec School"
+    ],
+    "Kaithal": [
+      "BPR Public School Pundri Kaithal",
+      "DAV Police Public School Kaithal",
+      "DAV Public School Pundri Kaithal",
+      "Govt Model Sanskriti Sr Sec School Pundri Kaithal",
+      "Gurunanak Sr Sec School Kurukshetra",
+      "Jat Shining Star Public School Kaithal",
+      "Jat Sr Sec School Kaithal",
+      "MDN Global School Kaithal",
+      "OS DAV Public School Kaithal",
+      "Pm Shri School Jawahar Navodaya Vidyalaya Kaithal",
+      "RKSD Public School Kaithal"
+    ],
+    "Karnal": [
+      "DAV Centenary Public School Indri Road Karnal",
+      "DAV Police Public School Madhuban Karnal",
+      "DAV police Public School karnal",
+      "Delhi Public School Karnal",
+      "Dyal Singh Public School Sec 7 Karnal",
+      "Dyal Singh Public School Sec 7 Main Branch Karnal",
+      "Geeta Modern Sr Sec School Karnal",
+      "God Sons Public Sr Sec School Ramba Karnal",
+      "Gov model school Jundla",
+      "Government Model Sanskriti Sr Sec School Karnal",
+      "Guru Teg Bhadur Public School Karnal",
+      "Gyan Bharti Public School Indri Karnal",
+      "Karnal International School Karnal",
+      "Mata Sahib Kaur Sr Sec School Karnal",
+      "PM SHRI Government Sr Sec School Indri Karnal",
+      "PM Shri Government Sr Sec School Jundla Karnal",
+      "Prayaas Public School Karnal",
+      "Raghav Coaching classes",
+      "SDMN Vidya Mandir Nilokheri",
+      "SMR International School Safidon",
+      "SPS Covent School Karnal",
+      "ST Theresas Convent Sr Sec School Karnal",
+      "Shaheed Udham Singh Sr Sec School Indri Karnal",
+      "Shri Brahmrishi Vidya Mandir BVM Taraori Karnal",
+      "VP International school Karnal",
+      "Vivekanand High School Karnal"
+    ],
+    "Kurukshetra": [
+      "Amatir Kanya Gurukul Kurukshetra",
+      "DAV Centenary Public School Pehowa Kurukshetra",
+      "DAV Police Public School Kurukshetra",
+      "Divine Public School Shahabad Kurukshetra",
+      "Gita Girls Sr Sec School Kurukshetra",
+      "Guru Harkrishan public school Jhansa",
+      "Guru Nanak Dev Academy Pehowa Kurukshetra",
+      "Guru Nanak sr sec school",
+      "Manish Papneja Memorial Public School Kurukshetra Haryana",
+      "PM SHRI Kendriya Vidyalaya Mathana Kurukshetra",
+      "Saini Public School Kurukshetra",
+      "Sanjay Gandhi school",
+      "Shri Harkrishan Public School Jhansa Kurukshetra",
+      "Springdale Public School Kurukshetra",
+      "Vishwas Public School Shahbad Kurukshetra"
+    ],
+    "Narwana": [
+      "SD Public School Narwana"
+    ],
+    "Nilokheri": [
+      "DAV Centenary Public School Nilokheri"
+    ],
+    "Nissing": [
+      "Geeta Niketan Vidyapeeth Nissing",
+      "JPS Academy Nissing",
+      "JPS Academy Nissing Karnal",
+      "SD Adarsh Public School Karnal"
+    ],
+    "Panipat": [
+      "Aarohi Model Sr Sec School Chhajpur Kalan Panipat",
+      "Adarsh Mhavir Public School",
+      "Arya Sr Sec School Panipat",
+      "Aryan Global Public School Madlauda Panipat",
+      "BDM Sr Sec School",
+      "BRM Sr Sec School Panipat",
+      "DAV Huda Panipat",
+      "DAV Police Public School Police Line Panipat",
+      "Govt Model Sanskriti Sr Sec School Red Light Panipat",
+      "Jinwani Vidya Bharti Sr Sec School Panipat",
+      "LSBT Public Sr Sec School Saundhapur",
+      "Little angel senior secondary School",
+      "Nav Jyoti Model School Jalalpur Bapoli Panipat",
+      "New Mahawati Sports Sr Sec School Mohati Samalkha",
+      "PM Shri Government Senior Secondary School Samalkha",
+      "PT Kanshi Ram Sr Sec Vidya Mandir Bhodwal Majri Panipat",
+      "Patel Sr Sec School Patti Kalyana Samalkha",
+      "Rishikul Vidya Niketan School",
+      "SD Modern Sr Sec School Panipat",
+      "SD Senior Secondary School",
+      "SDM Public School Bapoli",
+      "SNSMK Govt College Behrampur Bapoli Panipat",
+      "gautam seniar secondary school panipat",
+      "gyandeep senior secondary school",
+      "northern valley panipat",
+      "sunrise Public School saundha pur"
+    ],
+    "Safidon": [
+      "Kali Ram DAV Public School Safidon",
+      "Pioneer Sr Sec School Safidon"
+    ],
+    "Samalkha": [
+      "CCAS Jain Sr Sec School Gannaur",
+      "CRM High School Chulkana Samalkha"
+    ],
+    "Shamli": [
+      "Rock Gold Academy Shamli",
+      "ST RC Convent School Shamli"
+    ],
+    "Sonipat": [
+      "Bharti Shiksha Sadan Sr Sec School Kailana Gannaur",
+      "Government Girls Sr Sec School Chulkana Samalkha",
+      "Nav Jyoti Shiksha Sadan Sr Sec School Gannaur",
+      "Prayaas International School Gannaur",
+      "SD Public School Tajpur Sonipat"
+    ],
+    "Yamuna Nagar": [
+      "DAV Public School Radaur Yamunanagar",
+      "National Public School Yamunanagar",
+      "Saraswati Public School SPS Yamunanagar",
+      "Saraswati Vidya Mandir Sr Sec School Yamunanaga"
+    ]
+  },
+  "Jammu And Kashmir": {
+    "Jammu": [
+      "Dav collegiate school",
+      "PM Shri Jawahar Navodaya Vidyalaya Udhampur",
+      "law prep tutorial",
+      "little Angel hr sec school"
+    ],
+    "Kathua": [
+      "Amar Higher Secondary School, Merheen, Kathua",
+      "Angels Public School, Dayala Chak",
+      "CMP Convent School, Chak Dyala",
+      "Cosmic Heart Higher Sec School Kathua",
+      "MHS DAV Higher Secondary School, Kathua",
+      "Model Public Higher Secondary School, Hiranagar",
+      "Montessori City School",
+      "Mount Litera Zee School Kathua",
+      "Nav Adarsh Higher Secondary School",
+      "Nav Jagriti Niketan Higher Secondary School, Kharote",
+      "Rigveda Convent School, Lacchipur",
+      "Shivalik Heights Higher Secondary School, Hiranagar",
+      "Tiny Scholars Sr Sec School Kathua"
+    ],
+    "Ladakh": [
+      "Jawahar Navodaya Vidyalaya JNV Leh",
+      "Jawahar Navodaya Vidyalaya Khumbathang Kargil"
+    ],
+    "Leh": [
+      "PM Shri Jawahar Navodaya Vidyalaya Leh"
+    ],
+    "Samba": [
+      "Modern Educational Institute",
+      "kushan public hr sec school samba"
+    ]
+  },
+  "Jharkhand": {
+    "Jamshedpur": [
+      "Gulmohar High School Jamshedpur",
+      "Little Flower School Jamshedpur",
+      "Vidya Jyoti School Jamshedpur"
+    ],
+    "Ranchi": [
+      "Lala Lajpat Rai Bal Mandir Sr Sec School Pundag Ranchi",
+      "Shradhanand Bal Mandir Sr Sec School Ranchi",
+      "Vikas Vidyalaya Ranchi"
+    ]
+  },
+  "Punjab": {
+    "Ludhiana": [
+      "Bal Bharati Public School Ludhiana"
+    ]
+  },
+  "Rajasthan": {
+    "Ajmer": [
+      "Bright Indian Public School Ajmer",
+      "KD Jain Sr Sec School Public School Ajmer",
+      "Lawrence and Mayo Public School Ajmer",
+      "Maharaja Agrasain Sr Sec School Ajmer",
+      "Maheshwari International School Ajmer",
+      "New Step Public Sr Sec School Jaipur",
+      "PM SHRI Kendriya Vidyalaya No 2 CRPF Ajmer",
+      "Presidency School Ajmer",
+      "Qms",
+      "Ryan International School Ajmer",
+      "ST Marys Convent Sr Sec School Ajmer",
+      "ST Pauls Sr Sec School Ajmer",
+      "Satguru International School Ajmer"
+    ],
+    "Bhilwara": [
+      "Eden International School, Bhilwara",
+      "Noble International School Bhilwara",
+      "Saint Anslum School Bhilwara",
+      "Saint Stewart Morris Sr Sec School Bhilwara",
+      "Sophia Girls Sr Sec School Bhilwara",
+      "Vidhya Globle Sr Sec School"
+    ],
+    "Bhiwadi": [
+      "Seth MR jaipuria School Career Fair"
+    ],
+    "Jaipur": [
+      "Career Way Coaching Classs Lalarpura Near NYMP",
+      "Ignite Coching Classes",
+      "Jai Prakash narayan Public sr sec school bhankrota jaipur",
+      "MotherLand Public Sr Sec School Niwaru Road Jaipur",
+      "New Step public Sr Sec School Bhankrota jaipur",
+      "Sharma Commerce Classes Chitrakoot",
+      "Step Forward Public School Jaipur",
+      "Udbhav Career Academy Jaipur",
+      "Universe Public Sr Sec School Jaipur"
+    ]
+  },
+  "Uttar Pradesh": {
+    "Agra": [
+      "Holy Public School Agra",
+      "ST CF Andrews School Agra",
+      "ST Clares Sr Sec School Agra",
+      "ST Georges School Unit II Agra",
+      "ST Pauls Church College Unit II Agra"
+    ],
+    "Baghpat": [
+      "Jai Parvati Global School Baghpat",
+      "The Gold Public Schoo Kandhla Shamli"
+    ],
+    "Faridabad": [
+      "SOS Hermann Gmeiner School Faridabad",
+      "ST Johns School Sector 7/A Faridabad"
+    ],
+    "Ghaziabad": [
+      "Allenhouse Public School Vasundhara Ghaziabad",
+      "JKG International School Vijay Nagar Ghaziabad",
+      "Modern Academy Sr Sec School Indirapuram Ghaziabad",
+      "New Era Public School Ghaziabad",
+      "Presidium School Raj Nagar Extension Ghaziabad",
+      "ST Antonys School Khora Colony Ghaziabad",
+      "Salwan Public School Ghaziabad",
+      "Seth Anandram Jaipuria School Ghaziabad"
+    ],
+    "Gorakhpur": [
+      "Gyanasthali Public School Gorakhpur",
+      "JC International Public School Gorakhpur",
+      "Mount Litera Zee School Gorakhpur",
+      "Navals National Academy Buxipur Gorakhpur",
+      "Navals National Academy Kushmi Gorakhpur",
+      "Navals Surajkund Gorakhpur",
+      "Neena Thapa Inter College Gorakhpur",
+      "Woodland Academy Gorakhpur Uttar Pradesh",
+      "cbse points tution classes",
+      "chse point",
+      "evergreen public school",
+      "gurukul enlightenment senior secondary school",
+      "integral coaching",
+      "navals academy rustampur",
+      "navals academy vijay chowk gorakhpur",
+      "navals inter college phulwaria",
+      "udaya ok public school"
+    ],
+    "Greater Noida": [
+      "Sparsh Global School Sec 20 Greater Noida"
+    ],
+    "Kairana": [
+      "St. RC Convent School Kairana"
+    ],
+    "Kanpur": [
+      "Bishop Westcott School Civil Lines Kanpur",
+      "Cambridge public School",
+      "DR Virendra Swarup Public School Kanpur",
+      "Delhi Public School Lucknow",
+      "Harmilap Mission School Kanpur",
+      "Karam Devi Memorial Academy KDMA Kanpur",
+      "Mother Teresa Mission Higher Secondary School Kanpur",
+      "Mother Teresa Mission Higher Secondary School Kidwai Nagar Kanpur"
+    ],
+    "Lucknow": [
+      "Dps Eldeco",
+      "LA Martinirre College Lucknow",
+      "Loyola International School Lucknow",
+      "Lucknow Public School Vrindavan Yojna Lucknow",
+      "Montfort Inter College Lucknow",
+      "ST Marys Convent Inter College Lucknow",
+      "ST Xaviers Convent School Lucknow",
+      "Shivani Public School Kanpur",
+      "The Lucknow Public Collegiate Kanpur"
+    ],
+    "Muzaffarnagar": [
+      "Aarti Memorial Public School Muzaffarnagar",
+      "Global Public School Phugana Muzaffarnagar"
+    ],
+    "Noida": [
+      "Gaurs International School Noida",
+      "MODERN SCHOOL SHABERI",
+      "Rss international school , sec 44 noida",
+      "Saint Hood Convent School Dadri"
+    ],
+    "Prayagraj": [
+      "Army Public School Old Cantt Prayagraj",
+      "Khel Gaon Public School Prayagraj",
+      "Ramanujan Public School Jhalwa Prayagraj",
+      "Seth Anandram Jaipuria School Naini Prayagraj"
+    ],
+    "Roorkee": [
+      "Delhi Public School Roorkee",
+      "Spring bells public school Saharanpur"
+    ],
+    "Saharanpur": [
+      "Aryan International school Ambheta Saharanpur",
+      "KLG Public school , Saharanpur",
+      "ND Public School Gangoh Saharanpur",
+      "Shri Ram krishna Mehta Inter School Gangoh"
+    ],
+    "Shamli": [
+      "Alpine International School Jalalabad",
+      "Alpine Vidhyapeeth Thanabhawan Shamli",
+      "Bright Home Public School Nanauta Saharanpur",
+      "Clinton Public School Saharanpur",
+      "Divya Public School Badgaon Saharanpur",
+      "Green Field Academy Nanuta",
+      "Maples Academy Budhana Muzaffarnagar",
+      "OSM Inter College Unn Shamli",
+      "ST RC Scientific Convent School Kairana",
+      "ST Stephen International School Nanauta Saharanpur",
+      "SVM Girls Inter College Shamli",
+      "St Xavier School Sardhana meerut",
+      "Vanasthali Academy Unn Shamli"
+    ],
+    "Varanasi": [
+      "Aman Central english school",
+      "Banaras public school",
+      "GSS International School, Shivpur",
+      "SS Convent School",
+      "Sanjay City Model School Varanasi Uttar Pradesh",
+      "Sant Atulanand Convent School Varanasi",
+      "Seth MR Jaipuria Varanasi",
+      "seth jaipuria public school"
+    ]
+  },
+  "Uttarakhand": {
+    "Roorkee": [
+      "Montfort Sr Sec School Roorkee"
+    ],
+    "Rudrapur": [
+      "Delhi Public School DPS Rudrapur",
+      "Delhi Public School Rudrapur",
+      "Jaycees Public School JPS Rudrapur",
+      "RAN Public School Rudrapur"
+    ]
+  }
+}
