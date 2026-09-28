@@ -25,11 +25,9 @@ export async function POST(req: Request) {
         { status: 404 }
       );
     }
-
     const primary = guest.members?.[0] || guest;
     const recipientEmail = guest.email || primary.email;
     const studentName = guest.name || primary.name;
-
     if (action === "approve") {
       // Ensure QR Code exists
       let qrCodeURL = guest.qrCode;
@@ -39,9 +37,7 @@ export async function POST(req: Request) {
         );
         guest.qrCode = qrCodeURL;
       }
-
       guest.paymentStatus = "verified";
-
       // Configure Email transporter
       const transporter = nodemailer.createTransport({
         service: "Gmail",
