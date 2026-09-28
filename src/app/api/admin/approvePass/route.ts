@@ -35,7 +35,7 @@ export async function POST(req: Request) {
       let qrCodeURL = guest.qrCode;
       if (!qrCodeURL) {
         qrCodeURL = await QRCode.toDataURL(
-          `${process.env.NEXTAUTH_URL || "https://aagaaz-geetauniversity.vercel.app"}/checkin?regId=${registrationId}`
+          `${process.env.NEXTAUTH_URL || "https://aagaaz-gu.vercel.app"}/checkin?regId=${registrationId}`
         );
         guest.qrCode = qrCodeURL;
       }
@@ -180,7 +180,7 @@ Please present this QR code at the entry gate during the event.
 
 <div style="margin-top:20px">
 
-<a href="${process.env.NEXTAUTH_URL || 'https://aagaaz-geetauniversity.vercel.app'}" 
+<a href="${process.env.NEXTAUTH_URL || 'https://aagaaz-gu.vercel.app'}" 
 style="display:inline-block;background:#2563eb;color:white;padding:10px 18px;border-radius:6px;text-decoration:none;font-size:14px">
 Visit Event Website
 </a>

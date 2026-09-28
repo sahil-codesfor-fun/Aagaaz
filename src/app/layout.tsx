@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXTAUTH_URL || "https://aagaaz-geetauniversity.vercel.app"),
+  metadataBase: new URL(process.env.NEXTAUTH_URL || "https://aagaaz-gu.vercel.app"),
   title: "Aagaz 2K26 – Star Night | Geeta University",
   description: "Official entry pass and event platform for Aagaz 2K26 Star Night featuring Sunanda Sharma at Geeta University.",
   icons: {

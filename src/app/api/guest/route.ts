@@ -45,7 +45,7 @@ export async function POST(req: Request) {
     const registrationId = uuidv4();
 
     const qrCodeURL = await QRCode.toDataURL(
-      `${process.env.NEXTAUTH_URL || "https://aagaaz-geetauniversity.vercel.app"}/checkin?regId=${registrationId}`
+      `${process.env.NEXTAUTH_URL || "https://aagaaz-gu.vercel.app"}/checkin?regId=${registrationId}`
     );
 
     console.log("Generated QR for student registration:", registrationId);
