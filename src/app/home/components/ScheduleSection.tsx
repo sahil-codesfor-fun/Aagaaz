@@ -38,15 +38,15 @@ export default function ScheduleSection() {
         time: "Evening Slot",
         title: "Electronic DJ Night & Stage Beats",
         venue: "Main Grounds",
-        tag: "Aagaz Beats",
-        desc: "High-energy music and visual stage lighting to inaugurate the Aagaz 2K26 fest.",
+        tag: "Aagaaz Beats",
+        desc: "High-energy music and visual stage lighting to inaugurate the Aagaaz 2K26 fest.",
         featured: false,
       },
     ],
     day2: [
       {
         time: "Day Session",
-        title: "Aagaz 2K26 Carnival, Stalls & Exhibitions",
+        title: "Aagaaz 2K26 Carnival, Stalls & Exhibitions",
         venue: "Boulevard & Arena",
         tag: "Festival Grounds",
         desc: "Student innovation stalls, cultural displays, and interactive festival activities.",

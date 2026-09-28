@@ -8,7 +8,7 @@ interface EventMarqueeProps {
 
 export default function EventMarquee({ className = "" }: EventMarqueeProps) {
   const items = [
-    "AAGAZ 2K26",
+    "AAGAAZ 2K26",
     "STAR NIGHT",
     "SUNANDA SHARMA LIVE",
     "GEETA UNIVERSITY",

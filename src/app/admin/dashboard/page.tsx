@@ -94,16 +94,6 @@ export default function AdminDashboard() {
   const [isDetailOpen, setIsDetailOpen] = useState(false);
   const [zoomImage, setZoomImage] = useState<{ url: string; title: string } | null>(null);
 
-  // Floating hover preview state with smart placement
-  const [hoveredPreview, setHoveredPreview] = useState<{
-    url: string;
-    title: string;
-    docType: string;
-    x: number;
-    y: number;
-    placement: 'top' | 'bottom';
-  } | null>(null);
-
   const [processingAction, setProcessingAction] = useState<{ [key: string]: boolean }>({});
   const [searchQuery, setSearchQuery] = useState("");
   const [statusFilter, setStatusFilter] = useState("all");
@@ -129,7 +119,10 @@ export default function AdminDashboard() {
       const data = await res.json();
 
       if (Array.isArray(data)) {
-        setRegistrations(data);
+        const sortedData = [...data].sort((a: Registration, b: Registration) => {
+          return new Date(b.createdAt || 0).getTime() - new Date(a.createdAt || 0).getTime();
+        });
+        setRegistrations(sortedData);
         setStats({
           totalRegistrations: data.length,
           totalVerified: data.filter((r: Registration) => r.paymentStatus === "verified").length,
@@ -327,7 +320,7 @@ export default function AdminDashboard() {
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-neutral-200 dark:border-neutral-800">
           <div>
             <div className="text-[11px] font-mono tracking-wider uppercase text-neutral-400 dark:text-neutral-500">
-              Aagaz 2K26 Administration Portal
+              Aagaaz 2K26 Administration Portal
             </div>
             <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-neutral-900 dark:text-white">
               Student ID Verification & Pass Approval
@@ -468,7 +461,6 @@ export default function AdminDashboard() {
                     <TableHead className="font-semibold text-neutral-700 dark:text-neutral-300">Reg ID</TableHead>
                     <TableHead className="font-semibold text-neutral-700 dark:text-neutral-300">Student Info</TableHead>
                     <TableHead className="font-semibold text-neutral-700 dark:text-neutral-300">School & Region</TableHead>
-                    <TableHead className="font-semibold text-neutral-700 dark:text-neutral-300">Uploaded Documents (Hover to Preview)</TableHead>
                     <TableHead className="font-semibold text-neutral-700 dark:text-neutral-300">Status</TableHead>
                     <TableHead className="font-semibold text-neutral-700 dark:text-neutral-300 text-right">Actions</TableHead>
                   </TableRow>
@@ -483,8 +475,6 @@ export default function AdminDashboard() {
                     const city = user.city || primary?.city || primary?.address || "N/A";
                     const school = user.schoolName || primary?.schoolName || "N/A";
                     const isOther = user.isOtherSchool || primary?.isOtherSchool;
-                    const schoolIdCard = user.schoolIdCard || primary?.schoolIdCard;
-                    const aadharCard = user.aadharCard || primary?.aadharCard;
                     const isProcessing = processingAction[user.registrationId];
 
                     return (
@@ -510,78 +500,6 @@ export default function AdminDashboard() {
                           </div>
                           <div className="text-[11px] text-neutral-500 dark:text-neutral-400 font-mono">
                             {city}{state ? `, ${state}` : ""} • Class 12th
-                          </div>
-                        </TableCell>
-
-                        <TableCell>
-                          <div className="flex items-center gap-2">
-                            {schoolIdCard ? (
-                              <button
-                                type="button"
-                                onMouseEnter={(e) => {
-                                  const rect = e.currentTarget.getBoundingClientRect();
-                                  const placement = rect.top > 270 ? 'top' : 'bottom';
-                                  const yPos = placement === 'top' ? rect.top : rect.bottom;
-                                  const xPos = Math.max(160, Math.min(typeof window !== 'undefined' ? window.innerWidth - 160 : 300, rect.left + rect.width / 2));
-                                  setHoveredPreview({
-                                    url: schoolIdCard,
-                                    title: `${studentName} — School ID Card`,
-                                    docType: "School ID Card",
-                                    x: xPos,
-                                    y: yPos,
-                                    placement,
-                                  });
-                                }}
-                                onMouseLeave={() => setHoveredPreview(null)}
-                                onClick={() =>
-                                  setZoomImage({
-                                    url: schoolIdCard,
-                                    title: `${studentName}'s School ID Card`,
-                                  })
-                                }
-                                className="group relative flex items-center gap-1.5 text-[10px] font-mono bg-neutral-100 dark:bg-neutral-900 hover:bg-amber-50 dark:hover:bg-amber-950/40 text-neutral-700 dark:text-neutral-300 hover:text-amber-800 dark:hover:text-amber-300 hover:border-amber-300 dark:hover:border-amber-700/60 px-2.5 py-1 rounded-md border border-neutral-200 dark:border-neutral-800 transition-all shadow-2xs cursor-pointer"
-                              >
-                                <IdCard className="w-3.5 h-3.5 text-neutral-600 dark:text-neutral-400 group-hover:text-amber-600 dark:group-hover:text-amber-400" />
-                                <span className="font-semibold">School ID</span>
-                                <Eye className="w-3 h-3 text-neutral-400 group-hover:text-amber-600 dark:group-hover:text-amber-400 transition" />
-                              </button>
-                            ) : (
-                              <span className="text-[10px] text-neutral-400 dark:text-neutral-600 font-mono">No School ID</span>
-                            )}
-
-                            {aadharCard ? (
-                              <button
-                                type="button"
-                                onMouseEnter={(e) => {
-                                  const rect = e.currentTarget.getBoundingClientRect();
-                                  const placement = rect.top > 270 ? 'top' : 'bottom';
-                                  const yPos = placement === 'top' ? rect.top : rect.bottom;
-                                  const xPos = Math.max(160, Math.min(typeof window !== 'undefined' ? window.innerWidth - 160 : 300, rect.left + rect.width / 2));
-                                  setHoveredPreview({
-                                    url: aadharCard,
-                                    title: `${studentName} — Aadhar Card`,
-                                    docType: "Aadhar Card",
-                                    x: xPos,
-                                    y: yPos,
-                                    placement,
-                                  });
-                                }}
-                                onMouseLeave={() => setHoveredPreview(null)}
-                                onClick={() =>
-                                  setZoomImage({
-                                    url: aadharCard,
-                                    title: `${studentName}'s Aadhar Card`,
-                                  })
-                                }
-                                className="group relative flex items-center gap-1.5 text-[10px] font-mono bg-neutral-100 dark:bg-neutral-900 hover:bg-amber-50 dark:hover:bg-amber-950/40 text-neutral-700 dark:text-neutral-300 hover:text-amber-800 dark:hover:text-amber-300 hover:border-amber-300 dark:hover:border-amber-700/60 px-2.5 py-1 rounded-md border border-neutral-200 dark:border-neutral-800 transition-all shadow-2xs cursor-pointer"
-                              >
-                                <CreditCard className="w-3.5 h-3.5 text-neutral-600 dark:text-neutral-400 group-hover:text-amber-600 dark:group-hover:text-amber-400" />
-                                <span className="font-semibold">Aadhar</span>
-                                <Eye className="w-3 h-3 text-neutral-400 group-hover:text-amber-600 dark:group-hover:text-amber-400 transition" />
-                              </button>
-                            ) : (
-                              <span className="text-[10px] text-neutral-400 dark:text-neutral-600 font-mono">No Aadhar</span>
-                            )}
                           </div>
                         </TableCell>
 
@@ -662,46 +580,6 @@ export default function AdminDashboard() {
             </div>
           )}
         </div>
-
-        {/* Floating Hover Document Quick-Preview Card */}
-        {hoveredPreview && (
-          <div
-            style={{
-              left: `${hoveredPreview.x}px`,
-              top: `${hoveredPreview.y}px`,
-              transform: hoveredPreview.placement === 'top'
-                ? 'translate(-50%, -100%) translateY(-10px)'
-                : 'translate(-50%, 0) translateY(10px)',
-            }}
-            className="fixed z-[99999] pointer-events-none transition-transform duration-100 ease-out"
-          >
-            <div className="w-72 bg-[#101015] text-white p-3 rounded-2xl border border-neutral-700 shadow-2xl space-y-2.5 backdrop-blur-xl">
-              <div className="flex items-center justify-between text-[11px] font-mono text-neutral-300 px-0.5">
-                <span className="font-bold truncate max-w-[190px] text-amber-300">
-                  {hoveredPreview.title}
-                </span>
-                <span className="text-[9px] text-neutral-400 uppercase tracking-wider bg-neutral-800 px-1.5 py-0.5 rounded border border-neutral-700">
-                  {hoveredPreview.docType}
-                </span>
-              </div>
-              
-              <div className="w-full h-44 bg-black rounded-xl overflow-hidden border border-neutral-800 flex items-center justify-center p-1 relative">
-                <img
-                  src={hoveredPreview.url}
-                  alt={hoveredPreview.title}
-                  className="w-full h-full object-contain rounded-lg"
-                />
-              </div>
-
-              <div className="text-[10px] text-neutral-400 text-center font-mono flex items-center justify-center gap-1.5 pt-0.5">
-                <Eye className="w-3 h-3 text-amber-400" />
-                <span>Click badge for full-screen zoom</span>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* Detailed Review & Approval Dialog */}
         <Dialog open={isDetailOpen} onOpenChange={setIsDetailOpen}>
           <DialogContent className="sm:max-w-2xl bg-white dark:bg-[#101015] border-neutral-200 dark:border-neutral-800 text-neutral-900 dark:text-white text-xs max-h-[90vh] overflow-y-auto">
             <DialogHeader className="pr-8">

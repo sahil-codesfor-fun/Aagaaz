@@ -27,9 +27,9 @@ export async function POST(req: Request) {
     const qrBuffer = Buffer.from(base64Data, "base64");
 
     await transporter.sendMail({
-      from: `"Aagaz 2K26" <${process.env.EMAIL_USER}>`,
+      from: `"Aagaaz 2K26" <${process.env.EMAIL_USER}>`,
       to: email,
-      subject: "Your Aagaz 2K26 Check-in QR Code",
+      subject: "Your Aagaaz 2K26 Check-in QR Code",
       html: `
 <div style="background:#0f172a;padding:30px 10px;font-family:Arial,Helvetica,sans-serif">
 
@@ -41,7 +41,7 @@ style="background:#111827;border-radius:14px;overflow:hidden;box-shadow:0 10px 3
 <td style="background:linear-gradient(135deg,#2563eb,#1e40af);padding:30px;text-align:center;color:white">
 
 <h1 style="margin:0;font-size:28px;letter-spacing:1px">
-Aagaz 2K26
+Aagaaz 2K26
 </h1>
 
 <p style="margin:6px 0 0 0;font-size:14px">
@@ -59,7 +59,7 @@ Geeta University
 
 <p>Hello <strong>${name}</strong>,</p>
 
-<p>Your entry pass for <strong>Aagaz 2K26</strong> has been successfully verified.</p>
+<p>Your entry pass for <strong>Aagaaz 2K26</strong> has been successfully verified.</p>
 
 
 <!-- Ticket Box -->
@@ -102,7 +102,7 @@ Please present this QR code at the entry gate during the event.
 
 <tr>
 <td style="padding:6px 0"><strong>Event</strong></td>
-<td>Aagaz 2K26</td>
+<td>Aagaaz 2K26</td>
 </tr>
 
 <tr>
@@ -168,7 +168,7 @@ Geeta University
 <tr>
 <td style="background:#1f2937;color:#9ca3af;text-align:center;padding:16px;font-size:12px">
 
-© 2026 Geeta University | Aagaz 2K26
+© 2026 Geeta University | Aagaaz 2K26
 
 </td>
 </tr>

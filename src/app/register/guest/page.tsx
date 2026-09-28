@@ -314,7 +314,7 @@ export default function GuestRegistration() {
             <div className="flex items-center gap-2 text-xs font-mono">
               <span className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-md bg-neutral-100 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 text-xs font-mono text-neutral-700 dark:text-neutral-300 font-bold">
                 <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
-                GEETA UNIVERSITY • AAGAZ 2K26
+                GEETA UNIVERSITY • AAGAAZ 2K26
               </span>
               <span className="text-orange-600 dark:text-amber-400 font-bold text-xs uppercase tracking-wide">
                 STAR NIGHT LIVE
@@ -867,7 +867,7 @@ export default function GuestRegistration() {
                 <div className="flex items-start justify-between gap-3">
                   <div className="space-y-0.5">
                     <div className="text-[10px] font-mono text-amber-400 uppercase tracking-widest font-bold">
-                      GEETA UNIVERSITY • AAGAZ 2K26
+                      GEETA UNIVERSITY • AAGAAZ 2K26
                     </div>
                     <h4 className="text-lg sm:text-xl font-black text-white tracking-tight truncate max-w-[220px]">
                       {formData.name

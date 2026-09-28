@@ -7,10 +7,10 @@ export async function GET() {
     try {
         await connectToDatabase();
 
-        const guests = await GuestDetails.find();
+        const guests = await GuestDetails.find().sort({ createdAt: -1, _id: -1 });
 
         // Combine both collections
-        const users = [...guests ];
+        const users = [...guests];
 
         // Fetch coupon details for users who have applied a coupon
         const couponCodes = users.map(user => user.appliedCoupon).filter(code => code);

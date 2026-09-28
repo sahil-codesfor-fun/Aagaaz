@@ -23,7 +23,7 @@ const registrationOptions = [
   {
     id: "guest",
     title: "Official Golden Pass",
-    subtitle: "Authenticated digital QR & physical turnstile admission for Aagaz 2K26 Star Night.",
+    subtitle: "Authenticated digital QR & physical turnstile admission for Aagaaz 2K26 Star Night.",
     features: [
       "Access to Main Arena & Star Night Concert",
       "Live Headline Performance by Sunanda Sharma",
@@ -70,7 +70,7 @@ export function RegisterSection() {
             </h2>
           </div>
           <p className="text-sm text-neutral-600 dark:text-neutral-400 max-w-md leading-relaxed">
-            Reserve your official golden admission pass for Aagaz 2K26 Star Night featuring Sunanda Sharma at Geeta University.
+            Reserve your official golden admission pass for Aagaaz 2K26 Star Night featuring Sunanda Sharma at Geeta University.
           </p>
         </motion.div>
 
@@ -91,7 +91,7 @@ export function RegisterSection() {
                 <div className="flex items-center gap-2.5 font-mono text-xs font-black tracking-wider uppercase">
                   <span>OFFICIAL VIP GOLDEN TICKET</span>
                   <span className="text-amber-900">•</span>
-                  <span className="text-neutral-900 font-bold hidden sm:inline">AAGAZ 2K26</span>
+                  <span className="text-neutral-900 font-bold hidden sm:inline">AAGAAZ 2K26</span>
                 </div>
                 <div className="text-[11px] font-mono bg-neutral-950 text-amber-300 px-3 py-1 rounded-full font-bold shadow-xs">
                   100 PASSES QUOTA
@@ -112,7 +112,7 @@ export function RegisterSection() {
                     </div>
 
                     <h3 className="text-2xl sm:text-4xl font-black text-neutral-950 dark:text-white tracking-tight pt-1">
-                      Aagaz 2K26 Star Night Pass
+                      Aagaaz 2K26 Star Night Pass
                     </h3>
                     <p className="text-xs sm:text-sm text-neutral-700 dark:text-neutral-300 font-medium max-w-md">
                       Official turnstile admittance for <strong>Sunanda Sharma Live Concert</strong> at Geeta University.

@@ -26,6 +26,7 @@ interface Registration {
   totalAmount: number;
   discountPercentage: number;
   appliedCoupon: string;
+  createdAt?: string;
 }
 
 export default function AccountsDashboard() {
@@ -55,7 +56,10 @@ export default function AccountsDashboard() {
       const data = await res.json();
 
       if (Array.isArray(data)) {
-        setRegistrations(data);
+        const sortedData = [...data].sort((a: Registration, b: Registration) => {
+          return new Date(b.createdAt || 0).getTime() - new Date(a.createdAt || 0).getTime();
+        });
+        setRegistrations(sortedData);
 
         const totalRegistrations = data.length;
         const totalVerified = data.filter((r: Registration) => r.paymentStatus === "verified").length;
