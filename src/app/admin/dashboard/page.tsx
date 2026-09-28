@@ -315,16 +315,20 @@ export default function AdminDashboard() {
   });
 
   return (
-    <div className="min-h-screen bg-neutral-50/70 pt-28 pb-20">
+    <div className="min-h-screen bg-neutral-50/70 dark:bg-[#09090d] pt-28 pb-20 transition-colors duration-300 relative overflow-hidden">
+      {/* Background glow effects */}
+      <div className="absolute top-10 right-1/4 w-[500px] h-[500px] bg-gradient-to-br from-amber-200/20 dark:from-amber-500/10 via-orange-100/15 dark:via-orange-500/5 to-transparent rounded-full blur-3xl pointer-events-none -z-10" />
+      <div className="absolute bottom-10 left-10 w-[400px] h-[400px] bg-gradient-to-tr from-rose-100/15 dark:from-rose-500/5 via-amber-100/10 dark:via-amber-500/5 to-transparent rounded-full blur-3xl pointer-events-none -z-10" />
+
       <div className="max-w-7xl mx-auto px-6 md:px-10 space-y-8">
         
         {/* Header */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-neutral-200">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-neutral-200 dark:border-neutral-800">
           <div>
-            <div className="text-[11px] font-mono tracking-wider uppercase text-neutral-400">
+            <div className="text-[11px] font-mono tracking-wider uppercase text-neutral-400 dark:text-neutral-500">
               Aagaz 2K26 Administration Portal
             </div>
-            <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-neutral-900">
+            <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-neutral-900 dark:text-white">
               Student ID Verification & Pass Approval
             </h1>
           </div>
@@ -335,7 +339,7 @@ export default function AdminDashboard() {
               size="sm"
               onClick={fetchData}
               disabled={isLoading}
-              className="text-xs border-neutral-200"
+              className="text-xs border-neutral-200 dark:border-neutral-800 bg-white dark:bg-[#101015] text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-800 cursor-pointer"
             >
               <RefreshCw className={`w-3.5 h-3.5 mr-1.5 ${isLoading ? "animate-spin" : ""}`} /> Refresh
             </Button>
@@ -344,29 +348,29 @@ export default function AdminDashboard() {
               onClick={exportUserDetailsToExcel}
               size="sm"
               variant="outline"
-              className="text-xs border-neutral-200"
+              className="text-xs border-neutral-200 dark:border-neutral-800 bg-white dark:bg-[#101015] text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-800 cursor-pointer"
             >
               <Download className="w-3.5 h-3.5 mr-1.5" /> Export CSV
             </Button>
 
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="outline" size="sm" className="text-xs border-neutral-200">
+                <Button variant="outline" size="sm" className="text-xs border-neutral-200 dark:border-neutral-800 bg-white dark:bg-[#101015] text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-800 cursor-pointer">
                   <Menu className="w-4 h-4" />
                 </Button>
               </DropdownMenuTrigger>
 
-              <DropdownMenuContent align="end" className="text-xs">
+              <DropdownMenuContent align="end" className="text-xs bg-white dark:bg-[#101015] border-neutral-200 dark:border-neutral-800 text-neutral-900 dark:text-neutral-200">
                 <Link href="/admin/dashboard">
-                  <DropdownMenuItem>Dashboard Overview</DropdownMenuItem>
+                  <DropdownMenuItem className="cursor-pointer hover:bg-neutral-100 dark:hover:bg-neutral-800">Dashboard Overview</DropdownMenuItem>
                 </Link>
                 <Link href="/admin/coupons">
-                  <DropdownMenuItem>
+                  <DropdownMenuItem className="cursor-pointer hover:bg-neutral-100 dark:hover:bg-neutral-800">
                     <Ticket className="mr-2 w-3.5 h-3.5" /> Manage Coupons
                   </DropdownMenuItem>
                 </Link>
                 <DropdownMenuItem
-                  className="text-rose-600 focus:text-rose-700"
+                  className="text-rose-600 focus:text-rose-700 dark:text-rose-400 dark:focus:text-rose-300 cursor-pointer hover:bg-neutral-100 dark:hover:bg-neutral-800"
                   onClick={() => signOut({ callbackUrl: "/login" })}
                 >
                   <LogOut className="mr-2 w-3.5 h-3.5" /> Logout
@@ -378,26 +382,26 @@ export default function AdminDashboard() {
 
         {/* Stats Strip */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <div className="p-5 rounded-xl bg-white border border-neutral-200 shadow-xs space-y-1">
-            <div className="text-[10px] font-mono uppercase text-neutral-400">Total Passes Registered</div>
-            <div className="text-2xl font-bold text-neutral-900">{stats.totalRegistrations}</div>
+          <div className="p-5 rounded-2xl bg-white dark:bg-[#101015] border border-neutral-200 dark:border-neutral-800 shadow-xs space-y-1">
+            <div className="text-[10px] font-mono uppercase text-neutral-400 dark:text-neutral-500">Total Passes Registered</div>
+            <div className="text-2xl font-bold text-neutral-900 dark:text-white">{stats.totalRegistrations}</div>
           </div>
-          <div className="p-5 rounded-xl bg-white border border-neutral-200 shadow-xs space-y-1">
-            <div className="text-[10px] font-mono uppercase text-amber-600">Pending Review</div>
-            <div className="text-2xl font-bold text-amber-600">{stats.totalPending}</div>
+          <div className="p-5 rounded-2xl bg-white dark:bg-[#101015] border border-neutral-200 dark:border-neutral-800 shadow-xs space-y-1">
+            <div className="text-[10px] font-mono uppercase text-amber-600 dark:text-amber-400 font-semibold">Pending Review</div>
+            <div className="text-2xl font-bold text-amber-600 dark:text-amber-400">{stats.totalPending}</div>
           </div>
-          <div className="p-5 rounded-xl bg-white border border-neutral-200 shadow-xs space-y-1">
-            <div className="text-[10px] font-mono uppercase text-emerald-600">Approved & Sent</div>
-            <div className="text-2xl font-bold text-emerald-600">{stats.totalVerified}</div>
+          <div className="p-5 rounded-2xl bg-white dark:bg-[#101015] border border-neutral-200 dark:border-neutral-800 shadow-xs space-y-1">
+            <div className="text-[10px] font-mono uppercase text-emerald-600 dark:text-emerald-400 font-semibold">Approved & Sent</div>
+            <div className="text-2xl font-bold text-emerald-600 dark:text-emerald-400">{stats.totalVerified}</div>
           </div>
-          <div className="p-5 rounded-xl bg-white border border-neutral-200 shadow-xs space-y-1">
-            <div className="text-[10px] font-mono uppercase text-rose-600">Rejected / Failed</div>
-            <div className="text-2xl font-bold text-rose-600">{stats.totalFailed}</div>
+          <div className="p-5 rounded-2xl bg-white dark:bg-[#101015] border border-neutral-200 dark:border-neutral-800 shadow-xs space-y-1">
+            <div className="text-[10px] font-mono uppercase text-rose-600 dark:text-rose-400 font-semibold">Rejected / Failed</div>
+            <div className="text-2xl font-bold text-rose-600 dark:text-rose-400">{stats.totalFailed}</div>
           </div>
         </div>
 
         {/* Table & Filters */}
-        <div className="p-6 rounded-2xl bg-white border border-neutral-200 shadow-sm space-y-5">
+        <div className="p-6 rounded-2xl bg-white dark:bg-[#101015] border border-neutral-200 dark:border-neutral-800 shadow-sm space-y-5">
           {/* Search & Filter bar */}
           <div className="flex flex-col sm:flex-row gap-3 justify-between items-stretch sm:items-center">
             <div className="relative max-w-sm w-full">
@@ -406,39 +410,39 @@ export default function AdminDashboard() {
                 placeholder="Search by student, school, city, state, or ID..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-9 text-xs focus-visible:ring-neutral-900"
+                className="pl-9 text-xs bg-neutral-50/70 dark:bg-neutral-900 border-neutral-200 dark:border-neutral-800 text-neutral-900 dark:text-white focus:bg-white dark:focus:bg-neutral-900 focus-visible:ring-amber-400/50 rounded-xl"
               />
             </div>
 
-            <div className="flex items-center gap-1.5 bg-neutral-100 p-1 rounded-lg border border-neutral-200/80 text-xs">
+            <div className="flex items-center gap-1.5 bg-neutral-100 dark:bg-neutral-900/90 p-1 rounded-xl border border-neutral-200/80 dark:border-neutral-800 text-xs">
               <button
                 onClick={() => setStatusFilter("all")}
-                className={`px-3 py-1 rounded-md font-medium transition ${
-                  statusFilter === "all" ? "bg-white shadow-2xs text-neutral-900" : "text-neutral-500 hover:text-neutral-900"
+                className={`px-3 py-1 rounded-lg font-medium transition cursor-pointer ${
+                  statusFilter === "all" ? "bg-white dark:bg-neutral-800 shadow-2xs text-neutral-900 dark:text-white" : "text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white"
                 }`}
               >
                 All ({registrations.length})
               </button>
               <button
                 onClick={() => setStatusFilter("pending")}
-                className={`px-3 py-1 rounded-md font-medium transition ${
-                  statusFilter === "pending" ? "bg-white shadow-2xs text-amber-700 font-bold" : "text-neutral-500 hover:text-neutral-900"
+                className={`px-3 py-1 rounded-lg font-medium transition cursor-pointer ${
+                  statusFilter === "pending" ? "bg-white dark:bg-neutral-800 shadow-2xs text-amber-700 dark:text-amber-400 font-bold" : "text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white"
                 }`}
               >
                 Pending Review ({stats.totalPending})
               </button>
               <button
                 onClick={() => setStatusFilter("verified")}
-                className={`px-3 py-1 rounded-md font-medium transition ${
-                  statusFilter === "verified" ? "bg-white shadow-2xs text-emerald-700 font-bold" : "text-neutral-500 hover:text-neutral-900"
+                className={`px-3 py-1 rounded-lg font-medium transition cursor-pointer ${
+                  statusFilter === "verified" ? "bg-white dark:bg-neutral-800 shadow-2xs text-emerald-700 dark:text-emerald-400 font-bold" : "text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white"
                 }`}
               >
                 Approved ({stats.totalVerified})
               </button>
               <button
                 onClick={() => setStatusFilter("failed")}
-                className={`px-3 py-1 rounded-md font-medium transition ${
-                  statusFilter === "failed" ? "bg-white shadow-2xs text-rose-700 font-bold" : "text-neutral-500 hover:text-neutral-900"
+                className={`px-3 py-1 rounded-lg font-medium transition cursor-pointer ${
+                  statusFilter === "failed" ? "bg-white dark:bg-neutral-800 shadow-2xs text-rose-700 dark:text-rose-400 font-bold" : "text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white"
                 }`}
               >
                 Rejected ({stats.totalFailed})
@@ -452,20 +456,20 @@ export default function AdminDashboard() {
               Loading registrations...
             </div>
           ) : filteredRegistrations.length === 0 ? (
-            <div className="py-16 text-center text-xs text-neutral-400">
+            <div className="py-16 text-center text-xs text-neutral-400 dark:text-neutral-500">
               No matching registrations found.
             </div>
           ) : (
-            <div className="border border-neutral-200 rounded-xl overflow-x-auto">
+            <div className="border border-neutral-200 dark:border-neutral-800 rounded-xl overflow-x-auto">
               <Table>
-                <TableHeader className="bg-neutral-50/80 text-[11px] font-mono">
-                  <TableRow>
-                    <TableHead className="font-semibold text-neutral-700">Reg ID</TableHead>
-                    <TableHead className="font-semibold text-neutral-700">Student Info</TableHead>
-                    <TableHead className="font-semibold text-neutral-700">School & Region</TableHead>
-                    <TableHead className="font-semibold text-neutral-700">Uploaded Documents (Hover to Preview)</TableHead>
-                    <TableHead className="font-semibold text-neutral-700">Status</TableHead>
-                    <TableHead className="font-semibold text-neutral-700 text-right">Actions</TableHead>
+                <TableHeader className="bg-neutral-50/80 dark:bg-neutral-900/80 border-b border-neutral-200 dark:border-neutral-800 text-[11px] font-mono">
+                  <TableRow className="border-b border-neutral-200 dark:border-neutral-800 hover:bg-transparent">
+                    <TableHead className="font-semibold text-neutral-700 dark:text-neutral-300">Reg ID</TableHead>
+                    <TableHead className="font-semibold text-neutral-700 dark:text-neutral-300">Student Info</TableHead>
+                    <TableHead className="font-semibold text-neutral-700 dark:text-neutral-300">School & Region</TableHead>
+                    <TableHead className="font-semibold text-neutral-700 dark:text-neutral-300">Uploaded Documents (Hover to Preview)</TableHead>
+                    <TableHead className="font-semibold text-neutral-700 dark:text-neutral-300">Status</TableHead>
+                    <TableHead className="font-semibold text-neutral-700 dark:text-neutral-300 text-right">Actions</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody className="text-xs">
@@ -483,27 +487,27 @@ export default function AdminDashboard() {
                     const isProcessing = processingAction[user.registrationId];
 
                     return (
-                      <TableRow key={user.registrationId} className="hover:bg-neutral-50/50">
-                        <TableCell className="font-mono font-bold text-neutral-900">
+                      <TableRow key={user.registrationId} className="hover:bg-neutral-50/50 dark:hover:bg-neutral-900/40 border-b border-neutral-200/80 dark:border-neutral-800/80 transition-colors">
+                        <TableCell className="font-mono font-bold text-neutral-900 dark:text-neutral-200">
                           {user.registrationId.slice(0, 8)}...
                         </TableCell>
 
                         <TableCell>
-                          <div className="font-medium text-neutral-900">{studentName}</div>
-                          <div className="text-[11px] text-neutral-500">{email}</div>
-                          <div className="text-[10px] text-neutral-400 font-mono">{mobile}</div>
+                          <div className="font-medium text-neutral-900 dark:text-white">{studentName}</div>
+                          <div className="text-[11px] text-neutral-500 dark:text-neutral-400">{email}</div>
+                          <div className="text-[10px] text-neutral-400 dark:text-neutral-500 font-mono">{mobile}</div>
                         </TableCell>
 
                         <TableCell>
-                          <div className="font-medium text-neutral-900 flex items-center gap-1.5 flex-wrap">
+                          <div className="font-medium text-neutral-900 dark:text-white flex items-center gap-1.5 flex-wrap">
                             <span>{school}</span>
                             {isOther && (
-                              <span className="text-[9px] font-mono bg-amber-100 text-amber-800 px-1.5 py-0.5 rounded border border-amber-200">
+                              <span className="text-[9px] font-mono bg-amber-100 dark:bg-amber-950/50 text-amber-800 dark:text-amber-300 px-1.5 py-0.5 rounded border border-amber-200 dark:border-amber-800/60">
                                 Custom
                               </span>
                             )}
                           </div>
-                          <div className="text-[11px] text-neutral-500 font-mono">
+                          <div className="text-[11px] text-neutral-500 dark:text-neutral-400 font-mono">
                             {city}{state ? `, ${state}` : ""} • Class 12th
                           </div>
                         </TableCell>
@@ -530,14 +534,14 @@ export default function AdminDashboard() {
                                     title: `${studentName}'s School ID Card`,
                                   })
                                 }
-                                className="group relative flex items-center gap-1.5 text-[10px] font-mono bg-neutral-100 hover:bg-amber-50 hover:text-amber-800 hover:border-amber-300 text-neutral-700 px-2.5 py-1 rounded-md border border-neutral-200 transition-all shadow-2xs cursor-pointer"
+                                className="group relative flex items-center gap-1.5 text-[10px] font-mono bg-neutral-100 dark:bg-neutral-900 hover:bg-amber-50 dark:hover:bg-amber-950/40 text-neutral-700 dark:text-neutral-300 hover:text-amber-800 dark:hover:text-amber-300 hover:border-amber-300 dark:hover:border-amber-700/60 px-2.5 py-1 rounded-md border border-neutral-200 dark:border-neutral-800 transition-all shadow-2xs cursor-pointer"
                               >
-                                <IdCard className="w-3.5 h-3.5 text-neutral-600 group-hover:text-amber-600" />
+                                <IdCard className="w-3.5 h-3.5 text-neutral-600 dark:text-neutral-400 group-hover:text-amber-600 dark:group-hover:text-amber-400" />
                                 <span className="font-semibold">School ID</span>
-                                <Eye className="w-3 h-3 text-neutral-400 group-hover:text-amber-600 transition" />
+                                <Eye className="w-3 h-3 text-neutral-400 group-hover:text-amber-600 dark:group-hover:text-amber-400 transition" />
                               </button>
                             ) : (
-                              <span className="text-[10px] text-neutral-400 font-mono">No School ID</span>
+                              <span className="text-[10px] text-neutral-400 dark:text-neutral-600 font-mono">No School ID</span>
                             )}
 
                             {aadharCard ? (
@@ -560,31 +564,31 @@ export default function AdminDashboard() {
                                     title: `${studentName}'s Aadhar Card`,
                                   })
                                 }
-                                className="group relative flex items-center gap-1.5 text-[10px] font-mono bg-neutral-100 hover:bg-amber-50 hover:text-amber-800 hover:border-amber-300 text-neutral-700 px-2.5 py-1 rounded-md border border-neutral-200 transition-all shadow-2xs cursor-pointer"
+                                className="group relative flex items-center gap-1.5 text-[10px] font-mono bg-neutral-100 dark:bg-neutral-900 hover:bg-amber-50 dark:hover:bg-amber-950/40 text-neutral-700 dark:text-neutral-300 hover:text-amber-800 dark:hover:text-amber-300 hover:border-amber-300 dark:hover:border-amber-700/60 px-2.5 py-1 rounded-md border border-neutral-200 dark:border-neutral-800 transition-all shadow-2xs cursor-pointer"
                               >
-                                <CreditCard className="w-3.5 h-3.5 text-neutral-600 group-hover:text-amber-600" />
+                                <CreditCard className="w-3.5 h-3.5 text-neutral-600 dark:text-neutral-400 group-hover:text-amber-600 dark:group-hover:text-amber-400" />
                                 <span className="font-semibold">Aadhar</span>
-                                <Eye className="w-3 h-3 text-neutral-400 group-hover:text-amber-600 transition" />
+                                <Eye className="w-3 h-3 text-neutral-400 group-hover:text-amber-600 dark:group-hover:text-amber-400 transition" />
                               </button>
                             ) : (
-                              <span className="text-[10px] text-neutral-400 font-mono">No Aadhar</span>
+                              <span className="text-[10px] text-neutral-400 dark:text-neutral-600 font-mono">No Aadhar</span>
                             )}
                           </div>
                         </TableCell>
 
                         <TableCell>
                           {user.paymentStatus === "verified" && (
-                            <span className="inline-flex items-center gap-1 text-[11px] font-medium font-mono text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
+                            <span className="inline-flex items-center gap-1 text-[11px] font-medium font-mono text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/40 px-2 py-0.5 rounded border border-emerald-200 dark:border-emerald-800/80">
                               <CheckCircle2 className="w-3 h-3" /> Approved
                             </span>
                           )}
                           {user.paymentStatus === "pending" && (
-                            <span className="inline-flex items-center gap-1 text-[11px] font-medium font-mono text-amber-700 bg-amber-50 px-2 py-0.5 rounded border border-amber-200">
+                            <span className="inline-flex items-center gap-1 text-[11px] font-medium font-mono text-amber-700 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/40 px-2 py-0.5 rounded border border-amber-200 dark:border-amber-800/80">
                               <Clock className="w-3 h-3" /> Pending Review
                             </span>
                           )}
                           {user.paymentStatus === "failed" && (
-                            <span className="inline-flex items-center gap-1 text-[11px] font-medium font-mono text-rose-700 bg-rose-50 px-2 py-0.5 rounded border border-rose-200">
+                            <span className="inline-flex items-center gap-1 text-[11px] font-medium font-mono text-rose-700 dark:text-rose-400 bg-rose-50 dark:bg-rose-950/40 px-2 py-0.5 rounded border border-rose-200 dark:border-rose-800/80">
                               <XCircle className="w-3 h-3" /> Rejected
                             </span>
                           )}
@@ -615,7 +619,7 @@ export default function AdminDashboard() {
                                 variant="outline"
                                 onClick={() => handleApprove(user)}
                                 disabled={isProcessing}
-                                className="text-xs h-7 px-2 border-neutral-200 text-neutral-700 cursor-pointer hover:bg-neutral-100"
+                                className="text-xs h-7 px-2 border-neutral-200 dark:border-neutral-800 bg-white dark:bg-[#101015] text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-800 cursor-pointer"
                               >
                                 {isProcessing ? (
                                   <Loader2 className="w-3 h-3 animate-spin" />
@@ -635,7 +639,7 @@ export default function AdminDashboard() {
                                 setIsDetailOpen(true);
                                 setShowRejectBox(false);
                               }}
-                              className="text-xs h-7 px-2 text-neutral-600 hover:text-neutral-900 cursor-pointer"
+                              className="text-xs h-7 px-2 text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-800 cursor-pointer"
                             >
                               <FileText className="w-3.5 h-3.5 mr-1" /> View
                             </Button>
@@ -688,9 +692,9 @@ export default function AdminDashboard() {
 
         {/* Detailed Review & Approval Dialog */}
         <Dialog open={isDetailOpen} onOpenChange={setIsDetailOpen}>
-          <DialogContent className="sm:max-w-2xl bg-white text-xs max-h-[90vh] overflow-y-auto">
+          <DialogContent className="sm:max-w-2xl bg-white dark:bg-[#101015] border-neutral-200 dark:border-neutral-800 text-neutral-900 dark:text-white text-xs max-h-[90vh] overflow-y-auto">
             <DialogHeader className="pr-8">
-              <DialogTitle className="text-base font-bold text-neutral-900 flex items-center justify-between gap-3">
+              <DialogTitle className="text-base font-bold text-neutral-900 dark:text-white flex items-center justify-between gap-3">
                 <span>Student Verification Dossier</span>
                 {selectedUser && (
                   <Badge variant={selectedUser.paymentStatus === "verified" ? "default" : "secondary"}>
@@ -703,61 +707,61 @@ export default function AdminDashboard() {
             {selectedUser && (
               <div className="space-y-5 pt-2">
                 {/* Meta details */}
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 p-3.5 rounded-xl bg-neutral-50 border border-neutral-200 font-mono text-[11px]">
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 p-3.5 rounded-xl bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 font-mono text-[11px]">
                   <div className="col-span-2">
-                    <span className="text-neutral-400 block text-[10px]">REGISTRATION ID</span>
-                    <span className="font-bold text-neutral-900">{selectedUser.registrationId}</span>
+                    <span className="text-neutral-400 dark:text-neutral-500 block text-[10px]">REGISTRATION ID</span>
+                    <span className="font-bold text-neutral-900 dark:text-white">{selectedUser.registrationId}</span>
                   </div>
                   <div>
-                    <span className="text-neutral-400 block text-[10px]">PASS CLASS</span>
-                    <span className="font-bold text-neutral-900">{selectedUser.studentClass || "12th Class"}</span>
+                    <span className="text-neutral-400 dark:text-neutral-500 block text-[10px]">PASS CLASS</span>
+                    <span className="font-bold text-neutral-900 dark:text-white">{selectedUser.studentClass || "12th Class"}</span>
                   </div>
                   <div>
-                    <span className="text-neutral-400 block text-[10px]">QR DISPATCHED</span>
-                    <span className="font-bold text-neutral-900">{selectedUser.qrSent ? "Yes (Email)" : "No"}</span>
+                    <span className="text-neutral-400 dark:text-neutral-500 block text-[10px]">QR DISPATCHED</span>
+                    <span className="font-bold text-neutral-900 dark:text-white">{selectedUser.qrSent ? "Yes (Email)" : "No"}</span>
                   </div>
                 </div>
 
                 {/* Personal & School Info */}
-                <div className="p-4 rounded-xl border border-neutral-200 space-y-3">
-                  <div className="font-bold text-neutral-900 text-xs pb-1.5 border-b border-neutral-100 flex items-center justify-between">
+                <div className="p-4 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900/40 space-y-3">
+                  <div className="font-bold text-neutral-900 dark:text-white text-xs pb-1.5 border-b border-neutral-100 dark:border-neutral-800 flex items-center justify-between">
                     <span>Student & Institute Profile</span>
-                    <span className="text-[10px] font-mono text-neutral-400">
+                    <span className="text-[10px] font-mono text-neutral-400 dark:text-neutral-500">
                       Submitted: {new Date(selectedUser.createdAt).toLocaleString("en-IN")}
                     </span>
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
                     <div>
-                      <span className="text-neutral-400 block text-[10px]">FULL NAME</span>
-                      <span className="font-bold text-neutral-900">{selectedUser.name || selectedUser.members?.[0]?.name}</span>
+                      <span className="text-neutral-400 dark:text-neutral-500 block text-[10px]">FULL NAME</span>
+                      <span className="font-bold text-neutral-900 dark:text-white">{selectedUser.name || selectedUser.members?.[0]?.name}</span>
                     </div>
 
                     <div>
-                      <span className="text-neutral-400 block text-[10px]">EMAIL ADDRESS</span>
-                      <span className="font-semibold text-neutral-900">{selectedUser.email || selectedUser.members?.[0]?.email}</span>
+                      <span className="text-neutral-400 dark:text-neutral-500 block text-[10px]">EMAIL ADDRESS</span>
+                      <span className="font-semibold text-neutral-900 dark:text-white">{selectedUser.email || selectedUser.members?.[0]?.email}</span>
                     </div>
 
                     <div>
-                      <span className="text-neutral-400 block text-[10px]">MOBILE NUMBER</span>
-                      <span className="font-mono text-neutral-900">{selectedUser.mobile || selectedUser.members?.[0]?.mobile || selectedUser.members?.[0]?.whatsapp}</span>
+                      <span className="text-neutral-400 dark:text-neutral-500 block text-[10px]">MOBILE NUMBER</span>
+                      <span className="font-mono text-neutral-900 dark:text-white">{selectedUser.mobile || selectedUser.members?.[0]?.mobile || selectedUser.members?.[0]?.whatsapp}</span>
                     </div>
 
                     <div>
-                      <span className="text-neutral-400 block text-[10px]">STATE & CITY</span>
-                      <span className="font-medium text-neutral-900">
+                      <span className="text-neutral-400 dark:text-neutral-500 block text-[10px]">STATE & CITY</span>
+                      <span className="font-medium text-neutral-900 dark:text-white">
                         {selectedUser.city || selectedUser.members?.[0]?.city}, {selectedUser.state || selectedUser.members?.[0]?.state || ""}
                       </span>
                     </div>
 
                     <div className="col-span-2">
-                      <span className="text-neutral-400 block text-[10px]">SCHOOL NAME</span>
+                      <span className="text-neutral-400 dark:text-neutral-500 block text-[10px]">SCHOOL NAME</span>
                       <div className="flex items-center gap-2 mt-0.5">
-                        <span className="font-bold text-neutral-900 text-sm">
+                        <span className="font-bold text-neutral-900 dark:text-white text-sm">
                           {selectedUser.schoolName || selectedUser.members?.[0]?.schoolName}
                         </span>
                         {(selectedUser.isOtherSchool || selectedUser.members?.[0]?.isOtherSchool) && (
-                          <span className="text-[9px] font-mono bg-amber-100 text-amber-800 px-1.5 py-0.5 rounded border border-amber-200">
+                          <span className="text-[9px] font-mono bg-amber-100 dark:bg-amber-950/60 text-amber-800 dark:text-amber-300 px-1.5 py-0.5 rounded border border-amber-200 dark:border-amber-800/80">
                             Custom Entered School
                           </span>
                         )}
@@ -768,17 +772,17 @@ export default function AdminDashboard() {
 
                 {/* Uploaded Documents Preview Section */}
                 <div className="space-y-2">
-                  <div className="font-bold text-neutral-900 text-xs flex items-center justify-between">
+                  <div className="font-bold text-neutral-900 dark:text-white text-xs flex items-center justify-between">
                     <span>Uploaded Proof Documents</span>
-                    <span className="text-[10px] text-neutral-400 font-mono">Click images to zoom</span>
+                    <span className="text-[10px] text-neutral-400 dark:text-neutral-500 font-mono">Click images to zoom</span>
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     {/* School ID Card Card */}
-                    <div className="p-3 rounded-xl border border-neutral-200 bg-neutral-50/50 space-y-2">
-                      <div className="flex items-center justify-between text-xs font-semibold text-neutral-700">
+                    <div className="p-3 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50/50 dark:bg-neutral-900/60 space-y-2">
+                      <div className="flex items-center justify-between text-xs font-semibold text-neutral-700 dark:text-neutral-300">
                         <div className="flex items-center gap-1.5">
-                          <IdCard className="w-3.5 h-3.5 text-neutral-500" />
+                          <IdCard className="w-3.5 h-3.5 text-neutral-500 dark:text-neutral-400" />
                           <span>School ID Card</span>
                         </div>
                       </div>
@@ -789,7 +793,7 @@ export default function AdminDashboard() {
                             url: (selectedUser.schoolIdCard || selectedUser.members?.[0]?.schoolIdCard)!,
                             title: `${selectedUser.name}'s School ID Card`
                           })}
-                          className="group relative cursor-pointer overflow-hidden rounded-lg border border-neutral-200 bg-black aspect-video flex items-center justify-center"
+                          className="group relative cursor-pointer overflow-hidden rounded-lg border border-neutral-200 dark:border-neutral-800 bg-black aspect-video flex items-center justify-center"
                         >
                           <img
                             src={selectedUser.schoolIdCard || selectedUser.members?.[0]?.schoolIdCard}
@@ -801,17 +805,17 @@ export default function AdminDashboard() {
                           </div>
                         </div>
                       ) : (
-                        <div className="aspect-video rounded-lg bg-neutral-100 flex items-center justify-center text-neutral-400 text-[11px] font-mono">
+                        <div className="aspect-video rounded-lg bg-neutral-100 dark:bg-neutral-800/60 flex items-center justify-center text-neutral-400 dark:text-neutral-500 text-[11px] font-mono">
                           No School ID Uploaded
                         </div>
                       )}
                     </div>
 
                     {/* Aadhar Card Card */}
-                    <div className="p-3 rounded-xl border border-neutral-200 bg-neutral-50/50 space-y-2">
-                      <div className="flex items-center justify-between text-xs font-semibold text-neutral-700">
+                    <div className="p-3 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50/50 dark:bg-neutral-900/60 space-y-2">
+                      <div className="flex items-center justify-between text-xs font-semibold text-neutral-700 dark:text-neutral-300">
                         <div className="flex items-center gap-1.5">
-                          <CreditCard className="w-3.5 h-3.5 text-neutral-500" />
+                          <CreditCard className="w-3.5 h-3.5 text-neutral-500 dark:text-neutral-400" />
                           <span>Aadhar Card</span>
                         </div>
                       </div>
@@ -822,7 +826,7 @@ export default function AdminDashboard() {
                             url: (selectedUser.aadharCard || selectedUser.members?.[0]?.aadharCard)!,
                             title: `${selectedUser.name}'s Aadhar Card`
                           })}
-                          className="group relative cursor-pointer overflow-hidden rounded-lg border border-neutral-200 bg-black aspect-video flex items-center justify-center"
+                          className="group relative cursor-pointer overflow-hidden rounded-lg border border-neutral-200 dark:border-neutral-800 bg-black aspect-video flex items-center justify-center"
                         >
                           <img
                             src={selectedUser.aadharCard || selectedUser.members?.[0]?.aadharCard}
@@ -834,7 +838,7 @@ export default function AdminDashboard() {
                           </div>
                         </div>
                       ) : (
-                        <div className="aspect-video rounded-lg bg-neutral-100 flex items-center justify-center text-neutral-400 text-[11px] font-mono">
+                        <div className="aspect-video rounded-lg bg-neutral-100 dark:bg-neutral-800/60 flex items-center justify-center text-neutral-400 dark:text-neutral-500 text-[11px] font-mono">
                           No Aadhar Card Uploaded
                         </div>
                       )}
@@ -844,23 +848,23 @@ export default function AdminDashboard() {
 
                 {/* Rejection input box if triggered */}
                 {showRejectBox && (
-                  <div className="p-3.5 rounded-xl bg-rose-50 border border-rose-200 space-y-2">
-                    <div className="text-xs font-bold text-rose-900 flex items-center gap-1.5">
-                      <AlertTriangle className="w-4 h-4 text-rose-600" />
+                  <div className="p-3.5 rounded-xl bg-rose-50 dark:bg-rose-950/30 border border-rose-200 dark:border-rose-900/60 space-y-2">
+                    <div className="text-xs font-bold text-rose-900 dark:text-rose-300 flex items-center gap-1.5">
+                      <AlertTriangle className="w-4 h-4 text-rose-600 dark:text-rose-400" />
                       <span>Specify Rejection Reason (sent to student)</span>
                     </div>
                     <Input
                       placeholder="e.g. Uploaded School ID is blurry / Student not in 12th class"
                       value={rejectReason}
                       onChange={(e) => setRejectReason(e.target.value)}
-                      className="bg-white text-xs border-rose-300"
+                      className="bg-white dark:bg-neutral-900 text-xs border-rose-300 dark:border-rose-800/80 text-neutral-900 dark:text-white"
                     />
                     <div className="flex justify-end gap-2 pt-1">
                       <Button
                         size="sm"
                         variant="ghost"
                         onClick={() => setShowRejectBox(false)}
-                        className="text-xs h-7 px-2 text-neutral-600"
+                        className="text-xs h-7 px-2 text-neutral-600 dark:text-neutral-400"
                       >
                         Cancel
                       </Button>
@@ -877,8 +881,8 @@ export default function AdminDashboard() {
                 )}
 
                 {/* Modal Footer Actions */}
-                <div className="pt-3 border-t border-neutral-200 flex flex-wrap items-center justify-between gap-2">
-                  <div className="text-[11px] text-neutral-500 font-mono">
+                <div className="pt-3 border-t border-neutral-200 dark:border-neutral-800 flex flex-wrap items-center justify-between gap-2">
+                  <div className="text-[11px] text-neutral-500 dark:text-neutral-400 font-mono">
                     {selectedUser.paymentStatus === "verified" ? "Pass is already verified and dispatched." : "Review IDs before approving pass."}
                   </div>
 
@@ -888,7 +892,7 @@ export default function AdminDashboard() {
                         size="sm"
                         variant="outline"
                         onClick={() => setShowRejectBox(true)}
-                        className="text-xs h-8 border-rose-200 text-rose-600 hover:bg-rose-50 cursor-pointer"
+                        className="text-xs h-8 border-rose-200 dark:border-rose-900 text-rose-600 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-950/40 cursor-pointer"
                       >
                         <X className="w-3.5 h-3.5 mr-1" /> Reject
                       </Button>
