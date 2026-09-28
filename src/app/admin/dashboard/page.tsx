@@ -94,13 +94,14 @@ export default function AdminDashboard() {
   const [isDetailOpen, setIsDetailOpen] = useState(false);
   const [zoomImage, setZoomImage] = useState<{ url: string; title: string } | null>(null);
 
-  // Floating hover preview state
+  // Floating hover preview state with smart placement
   const [hoveredPreview, setHoveredPreview] = useState<{
     url: string;
     title: string;
     docType: string;
     x: number;
     y: number;
+    placement: 'top' | 'bottom';
   } | null>(null);
 
   const [processingAction, setProcessingAction] = useState<{ [key: string]: boolean }>({});
@@ -519,12 +520,16 @@ export default function AdminDashboard() {
                                 type="button"
                                 onMouseEnter={(e) => {
                                   const rect = e.currentTarget.getBoundingClientRect();
+                                  const placement = rect.top > 270 ? 'top' : 'bottom';
+                                  const yPos = placement === 'top' ? rect.top : rect.bottom;
+                                  const xPos = Math.max(160, Math.min(typeof window !== 'undefined' ? window.innerWidth - 160 : 300, rect.left + rect.width / 2));
                                   setHoveredPreview({
                                     url: schoolIdCard,
                                     title: `${studentName} — School ID Card`,
                                     docType: "School ID Card",
-                                    x: rect.left + rect.width / 2,
-                                    y: rect.top,
+                                    x: xPos,
+                                    y: yPos,
+                                    placement,
                                   });
                                 }}
                                 onMouseLeave={() => setHoveredPreview(null)}
@@ -549,12 +554,16 @@ export default function AdminDashboard() {
                                 type="button"
                                 onMouseEnter={(e) => {
                                   const rect = e.currentTarget.getBoundingClientRect();
+                                  const placement = rect.top > 270 ? 'top' : 'bottom';
+                                  const yPos = placement === 'top' ? rect.top : rect.bottom;
+                                  const xPos = Math.max(160, Math.min(typeof window !== 'undefined' ? window.innerWidth - 160 : 300, rect.left + rect.width / 2));
                                   setHoveredPreview({
                                     url: aadharCard,
                                     title: `${studentName} — Aadhar Card`,
                                     docType: "Aadhar Card",
-                                    x: rect.left + rect.width / 2,
-                                    y: rect.top,
+                                    x: xPos,
+                                    y: yPos,
+                                    placement,
                                   });
                                 }}
                                 onMouseLeave={() => setHoveredPreview(null)}
@@ -660,11 +669,13 @@ export default function AdminDashboard() {
             style={{
               left: `${hoveredPreview.x}px`,
               top: `${hoveredPreview.y}px`,
-              transform: 'translate(-50%, -100%) translateY(-12px)',
+              transform: hoveredPreview.placement === 'top'
+                ? 'translate(-50%, -100%) translateY(-10px)'
+                : 'translate(-50%, 0) translateY(10px)',
             }}
-            className="fixed z-[100] pointer-events-none transition-all duration-150 ease-out"
+            className="fixed z-[99999] pointer-events-none transition-transform duration-100 ease-out"
           >
-            <div className="w-72 bg-neutral-950/95 text-white p-3 rounded-2xl border border-neutral-700 shadow-2xl space-y-2.5 backdrop-blur-md animate-in fade-in zoom-in-95">
+            <div className="w-72 bg-[#101015] text-white p-3 rounded-2xl border border-neutral-700 shadow-2xl space-y-2.5 backdrop-blur-xl">
               <div className="flex items-center justify-between text-[11px] font-mono text-neutral-300 px-0.5">
                 <span className="font-bold truncate max-w-[190px] text-amber-300">
                   {hoveredPreview.title}
@@ -674,11 +685,11 @@ export default function AdminDashboard() {
                 </span>
               </div>
               
-              <div className="w-full h-44 bg-neutral-900 rounded-xl overflow-hidden border border-neutral-800 flex items-center justify-center p-1 relative">
+              <div className="w-full h-44 bg-black rounded-xl overflow-hidden border border-neutral-800 flex items-center justify-center p-1 relative">
                 <img
                   src={hoveredPreview.url}
                   alt={hoveredPreview.title}
-                  className="w-full h-full object-contain rounded-lg shadow-inner"
+                  className="w-full h-full object-contain rounded-lg"
                 />
               </div>
 
