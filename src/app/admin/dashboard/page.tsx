@@ -89,6 +89,7 @@ interface Registration {
 
 export default function AdminDashboard() {
   const [isLoading, setIsLoading] = useState(false);
+  const [isLoadingDetail, setIsLoadingDetail] = useState(false);
   const [registrations, setRegistrations] = useState<Registration[]>([]);
   const [selectedUser, setSelectedUser] = useState<Registration | null>(null);
   const [isDetailOpen, setIsDetailOpen] = useState(false);
@@ -134,6 +135,31 @@ export default function AdminDashboard() {
       toast.error("Failed to load registrations");
     } finally {
       setIsLoading(false);
+    }
+  };
+
+  const handleViewDetails = async (user: Registration) => {
+    setSelectedUser(user);
+    setIsDetailOpen(true);
+    setShowRejectBox(false);
+
+    // If proof images aren't loaded yet in memory, fetch the full single dossier
+    if (!user.schoolIdCard && !user.aadharCard && (!user.members?.[0]?.schoolIdCard && !user.members?.[0]?.aadharCard)) {
+      try {
+        setIsLoadingDetail(true);
+        const res = await fetch(`/api/admin/registerations?id=${encodeURIComponent(user.registrationId)}`);
+        if (res.ok) {
+          const fullData = await res.json();
+          setSelectedUser(fullData);
+          setRegistrations(prev =>
+            prev.map(r => (r.registrationId === user.registrationId ? { ...r, ...fullData } : r))
+          );
+        }
+      } catch (err) {
+        console.error("Failed to load registration details:", err);
+      } finally {
+        setIsLoadingDetail(false);
+      }
     }
   };
 
@@ -562,11 +588,7 @@ export default function AdminDashboard() {
                             <Button
                               size="sm"
                               variant="ghost"
-                              onClick={() => {
-                                setSelectedUser(user);
-                                setIsDetailOpen(true);
-                                setShowRejectBox(false);
-                              }}
+                              onClick={() => handleViewDetails(user)}
                               className="text-xs h-7 px-2 text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-800 cursor-pointer"
                             >
                               <FileText className="w-3.5 h-3.5 mr-1" /> View
@@ -664,7 +686,13 @@ export default function AdminDashboard() {
                 <div className="space-y-2">
                   <div className="font-bold text-neutral-900 dark:text-white text-xs flex items-center justify-between">
                     <span>Uploaded Proof Documents</span>
-                    <span className="text-[10px] text-neutral-400 dark:text-neutral-500 font-mono">Click images to zoom</span>
+                    {isLoadingDetail ? (
+                      <span className="text-[10px] text-amber-500 font-mono flex items-center gap-1">
+                        <Loader2 className="w-3 h-3 animate-spin" /> Loading full images...
+                      </span>
+                    ) : (
+                      <span className="text-[10px] text-neutral-400 dark:text-neutral-500 font-mono">Click images to zoom</span>
+                    )}
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -677,7 +705,12 @@ export default function AdminDashboard() {
                         </div>
                       </div>
 
-                      {(selectedUser.schoolIdCard || selectedUser.members?.[0]?.schoolIdCard) ? (
+                      {isLoadingDetail ? (
+                        <div className="aspect-video rounded-lg bg-neutral-100 dark:bg-neutral-800/60 flex flex-col items-center justify-center text-neutral-400 dark:text-neutral-500 text-[11px] font-mono gap-1">
+                          <Loader2 className="w-4 h-4 animate-spin text-neutral-500" />
+                          <span>Loading School ID...</span>
+                        </div>
+                      ) : (selectedUser.schoolIdCard || selectedUser.members?.[0]?.schoolIdCard) ? (
                         <div
                           onClick={() => setZoomImage({
                             url: (selectedUser.schoolIdCard || selectedUser.members?.[0]?.schoolIdCard)!,
@@ -710,7 +743,12 @@ export default function AdminDashboard() {
                         </div>
                       </div>
 
-                      {(selectedUser.aadharCard || selectedUser.members?.[0]?.aadharCard) ? (
+                      {isLoadingDetail ? (
+                        <div className="aspect-video rounded-lg bg-neutral-100 dark:bg-neutral-800/60 flex flex-col items-center justify-center text-neutral-400 dark:text-neutral-500 text-[11px] font-mono gap-1">
+                          <Loader2 className="w-4 h-4 animate-spin text-neutral-500" />
+                          <span>Loading Aadhar Card...</span>
+                        </div>
+                      ) : (selectedUser.aadharCard || selectedUser.members?.[0]?.aadharCard) ? (
                         <div
                           onClick={() => setZoomImage({
                             url: (selectedUser.aadharCard || selectedUser.members?.[0]?.aadharCard)!,

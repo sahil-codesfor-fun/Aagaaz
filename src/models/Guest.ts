@@ -96,5 +96,8 @@ const GuestSchema = new mongoose.Schema(
   }
 );
 
+GuestSchema.index({ createdAt: -1 });
+GuestSchema.index({ _id: -1 });
+
 export default mongoose.models.GuestDetails ||
   mongoose.model("GuestDetails", GuestSchema);
