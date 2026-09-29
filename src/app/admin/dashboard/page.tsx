@@ -475,6 +475,7 @@ export default function AdminDashboard() {
                     const city = user.city || primary?.city || primary?.address || "N/A";
                     const school = user.schoolName || primary?.schoolName || "N/A";
                     const isOther = user.isOtherSchool || primary?.isOtherSchool;
+                    const studentClass = user.studentClass || primary?.studentClass || "12th";
                     const isProcessing = processingAction[user.registrationId];
 
                     return (
@@ -499,7 +500,7 @@ export default function AdminDashboard() {
                             )}
                           </div>
                           <div className="text-[11px] text-neutral-500 dark:text-neutral-400 font-mono">
-                            {city}{state ? `, ${state}` : ""} • Class 12th
+                            {city}{state ? `, ${state}` : ""} • Class {studentClass}
                           </div>
                         </TableCell>
 
@@ -603,7 +604,7 @@ export default function AdminDashboard() {
                   </div>
                   <div>
                     <span className="text-neutral-400 dark:text-neutral-500 block text-[10px]">PASS CLASS</span>
-                    <span className="font-bold text-neutral-900 dark:text-white">{selectedUser.studentClass || "12th Class"}</span>
+                    <span className="font-bold text-neutral-900 dark:text-white">{selectedUser.studentClass ? (selectedUser.studentClass.toLowerCase().includes("class") ? selectedUser.studentClass : `${selectedUser.studentClass} Class`) : "12th Class"}</span>
                   </div>
                   <div>
                     <span className="text-neutral-400 dark:text-neutral-500 block text-[10px]">QR DISPATCHED</span>
@@ -743,7 +744,7 @@ export default function AdminDashboard() {
                       <span>Specify Rejection Reason (sent to student)</span>
                     </div>
                     <Input
-                      placeholder="e.g. Uploaded School ID is blurry / Student not in 12th class"
+                      placeholder="e.g. Uploaded School ID is blurry / Student not in 11th or 12th class"
                       value={rejectReason}
                       onChange={(e) => setRejectReason(e.target.value)}
                       className="bg-white dark:bg-neutral-900 text-xs border-rose-300 dark:border-rose-800/80 text-neutral-900 dark:text-white"

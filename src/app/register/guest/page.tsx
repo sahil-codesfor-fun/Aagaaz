@@ -266,7 +266,7 @@ export default function GuestRegistration() {
         city: formData.city,
         schoolName: finalSchoolName.trim(),
         isOtherSchool: isOtherSelected,
-        studentClass: "12th",
+        studentClass: formData.studentClass || "12th",
         schoolIdCard: formData.schoolIdCard,
         aadharCard: formData.aadharCard,
       };
@@ -322,7 +322,7 @@ export default function GuestRegistration() {
             </div>
 
             <h1 className="text-2xl sm:text-3xl lg:text-[34px] font-black tracking-tight text-neutral-900 dark:text-white leading-tight">
-              Student Entry Pass Registration (12th Class)
+              Student Entry Pass Registration (11th & 12th Class)
             </h1>
           </div>
 
@@ -331,7 +331,7 @@ export default function GuestRegistration() {
             <Award className="w-5 h-5 text-amber-600 dark:text-amber-400 shrink-0" />
             <div>
               <span className="font-bold block text-xs sm:text-sm">
-                12th Standard Passes Quota
+                11th & 12th Standard Passes Quota
               </span>
               <span className="text-[11px] text-amber-700 dark:text-amber-400/90 font-medium">
                 Mandatory ID Verification
@@ -459,7 +459,7 @@ export default function GuestRegistration() {
                     </div>
                   </div>
 
-                  {/* Class Selection (Fixed 12th Class) */}
+                  {/* Class Selection (11th & 12th Class) */}
                   <div className="space-y-1.5">
                     <Label
                       htmlFor="studentClass"
@@ -484,10 +484,16 @@ export default function GuestRegistration() {
                         >
                           <div className="flex items-center gap-2">
                             <GraduationCap className="w-4.5 h-4.5 text-neutral-400 shrink-0" />
-                            <SelectValue placeholder="12th Class" />
+                            <SelectValue placeholder="Select Class" />
                           </div>
                         </SelectTrigger>
                         <SelectContent className="bg-white dark:bg-[#101015] border-neutral-200 dark:border-neutral-800">
+                          <SelectItem
+                            value="11th"
+                            className="cursor-pointer py-2.5 font-medium"
+                          >
+                            11th Class
+                          </SelectItem>
                           <SelectItem
                             value="12th"
                             className="cursor-pointer py-2.5 font-medium"
@@ -858,7 +864,7 @@ export default function GuestRegistration() {
                   </span>
                 </div>
                 <span className="text-[11px] font-mono font-bold bg-neutral-800 text-neutral-300 px-2.5 py-0.5 rounded border border-neutral-700">
-                  CLASS 12TH
+                  CLASS {formData.studentClass ? formData.studentClass.toUpperCase() : "12TH"}
                 </span>
               </div>
 
