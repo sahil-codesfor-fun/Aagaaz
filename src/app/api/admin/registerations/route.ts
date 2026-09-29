@@ -12,7 +12,7 @@ export async function GET(request: NextRequest) {
 
         // If specific registration is requested, return full document including images
         if (registrationId) {
-            const guest = await GuestDetails.findOne({
+            const guest: any = await GuestDetails.findOne({
                 $or: [
                     { registrationId: registrationId },
                     ...(registrationId.match(/^[0-9a-fA-F]{24}$/) ? [{ _id: registrationId }] : [])
@@ -25,7 +25,7 @@ export async function GET(request: NextRequest) {
 
             let couponDetails = null;
             if (guest.appliedCoupon) {
-                const coupon = await Coupon.findOne({ name: guest.appliedCoupon }).lean();
+                const coupon: any = await Coupon.findOne({ name: guest.appliedCoupon }).lean();
                 if (coupon) {
                     couponDetails = {
                         name: coupon.name,
@@ -56,7 +56,7 @@ export async function GET(request: NextRequest) {
             .map((user: any) => user.appliedCoupon)
             .filter((code: any) => Boolean(code));
 
-        const coupons = couponCodes.length > 0
+        const coupons: any[] = couponCodes.length > 0
             ? await Coupon.find({ name: { $in: couponCodes } }).lean()
             : [];
 
