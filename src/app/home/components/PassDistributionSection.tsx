@@ -25,7 +25,7 @@ export default function PassDistributionSection() {
     {
       num: "04",
       title: "Gate Turnstile Fast-Track",
-      desc: "Present your QR code and physical pass (Serial No. 1100–1200) at the venue gate for instant admission.",
+      desc: "Present your encrypted QR code pass at the venue turnstile gate for instant scan-and-go admission.",
     },
   ];
 
@@ -51,10 +51,10 @@ export default function PassDistributionSection() {
             </h2>
           </div>
           <div className="text-left md:text-right">
-            <div className="text-xs font-mono text-neutral-500 uppercase font-semibold">Allocated Serial Range</div>
+            <div className="text-xs font-mono text-neutral-500 uppercase font-semibold">Pass Verification</div>
             <div className="text-xl font-bold font-mono text-neutral-900 flex items-center md:justify-end gap-2 mt-0.5">
               <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping" />
-              <span>SERIAL # 1100 – 1200</span>
+              <span>DIGITAL QR PASS SYSTEM</span>
             </div>
           </div>
         </motion.div>
@@ -74,22 +74,22 @@ export default function PassDistributionSection() {
               <Ticket className="w-6 h-6" />
             </div>
             <div className="text-xs font-mono text-neutral-400 uppercase tracking-wider font-semibold">
-              Total Physical Quota
+              Registration Status
             </div>
             <div className="text-3xl sm:text-4xl font-black text-neutral-900">
-              100 Passes
+              Open Passes
             </div>
             <div className="w-full bg-neutral-100 h-2 rounded-full overflow-hidden">
               <motion.div
                 initial={{ width: 0 }}
-                whileInView={{ width: "90%" }}
+                whileInView={{ width: "100%" }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.2 }}
                 className="bg-neutral-900 h-full rounded-full"
               />
             </div>
             <p className="text-xs text-neutral-500">
-              Strict physical badge allocation for guests and attendees.
+              Direct digital pass reservation open for all eligible students.
             </p>
           </motion.div>
 
@@ -105,10 +105,10 @@ export default function PassDistributionSection() {
               <Hash className="w-6 h-6" />
             </div>
             <div className="text-xs font-mono text-neutral-400 uppercase tracking-wider font-semibold">
-              Sequential Serial Range
+              Pass Validation
             </div>
             <div className="text-3xl sm:text-4xl font-black text-neutral-900 font-mono">
-              1100 – 1200
+              Digital QR
             </div>
             <div className="w-full bg-neutral-100 h-2 rounded-full overflow-hidden">
               <motion.div
@@ -120,7 +120,7 @@ export default function PassDistributionSection() {
               />
             </div>
             <p className="text-xs text-neutral-500">
-              Unique numbered passes mapped directly with database records.
+              Unique encrypted QR passes mapped directly with database records.
             </p>
           </motion.div>
 
@@ -139,7 +139,7 @@ export default function PassDistributionSection() {
               Security Protocol
             </div>
             <div className="text-3xl sm:text-4xl font-black text-emerald-600">
-              Dual Check
+              Instant Scan
             </div>
             <div className="w-full bg-neutral-100 h-2 rounded-full overflow-hidden">
               <motion.div
@@ -151,7 +151,7 @@ export default function PassDistributionSection() {
               />
             </div>
             <p className="text-xs text-neutral-500">
-              Encrypted QR ticket scan + physical badge check at gate.
+              Encrypted QR ticket scan at turnstile gate with instant check-in.
             </p>
           </motion.div>
 
@@ -176,7 +176,7 @@ export default function PassDistributionSection() {
             </div>
             <div className="flex items-center gap-2">
               <span className="text-xs font-mono bg-neutral-100 px-3 py-1 rounded-md text-neutral-700 font-bold">
-                100 Passes Quota
+                Open Registration
               </span>
             </div>
           </div>

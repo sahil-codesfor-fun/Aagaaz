@@ -12,8 +12,8 @@ export default function EventMarquee({ className = "" }: EventMarqueeProps) {
     "STAR NIGHT",
     "SUNANDA SHARMA LIVE",
     "GEETA UNIVERSITY",
-    "100 PHYSICAL PASSES",
-    "SERIAL RANGE # 1100–1200",
+    "OFFICIAL STUDENT PASSES",
+    "DIGITAL QR ENTRY PASS",
     "VERIFIED TURNSTILE ENTRY",
   ];
 

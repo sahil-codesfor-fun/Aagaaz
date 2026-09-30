@@ -57,7 +57,7 @@ export default function ScheduleSection() {
         title: "Turnstile Gate Open & VIP Pass Validation",
         venue: "Main Turnstiles",
         tag: "Gate Check-In",
-        desc: "Fast QR code scanning and sequential physical pass validation (Serial Numbers 1100–1200).",
+        desc: "Fast QR code scanning and instant digital pass validation at the entry gates.",
         featured: false,
       },
       {

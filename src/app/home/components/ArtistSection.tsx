@@ -70,16 +70,16 @@ export default function ArtistSection() {
                 />
               </div>
 
-              {/* Streamlined Pass Booking & Quota Action Bar */}
+              {/* Streamlined Pass Booking Action Bar */}
               <div className="p-5 bg-neutral-950 text-white space-y-3.5 relative z-10 border-t border-neutral-800">
                 <div className="grid grid-cols-3 gap-2 text-left font-mono">
                   <div className="p-2.5 rounded-xl bg-neutral-900 border border-neutral-800">
-                    <div className="text-[9px] text-neutral-400 uppercase">Quota</div>
-                    <div className="text-xs font-bold text-white mt-0.5">100 Passes</div>
+                    <div className="text-[9px] text-neutral-400 uppercase">Access</div>
+                    <div className="text-xs font-bold text-white mt-0.5">All Students</div>
                   </div>
                   <div className="p-2.5 rounded-xl bg-neutral-900 border border-neutral-800">
-                    <div className="text-[9px] text-neutral-400 uppercase">Serial</div>
-                    <div className="text-xs font-bold text-amber-300 mt-0.5"># 1100–1200</div>
+                    <div className="text-[9px] text-neutral-400 uppercase">Pass Type</div>
+                    <div className="text-xs font-bold text-amber-300 mt-0.5">Digital QR</div>
                   </div>
                   <div className="p-2.5 rounded-xl bg-neutral-900 border border-neutral-800">
                     <div className="text-[9px] text-neutral-400 uppercase">Entry</div>
@@ -167,7 +167,7 @@ export default function ArtistSection() {
             <div className="p-4 rounded-2xl bg-amber-50 border border-amber-200 text-amber-900 text-xs flex items-start gap-3 shadow-2xs">
               <Award className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
               <span className="leading-relaxed">
-                <strong>Main Stage Pavilion Access:</strong> Admission into the concert enclosure is strictly restricted to valid pass holders (Serial Numbers 1100–1200) verified at the turnstile gate.
+                <strong>Main Stage Pavilion Access:</strong> Admission into the concert enclosure is granted to all verified pass holders at the turnstile gate.
               </span>
             </div>
           </div>

@@ -13,8 +13,8 @@ export default function FaqSection() {
       a: "Once you complete registration and enter your valid 12-digit transaction UTR number, our university accounts department confirms payment in the ledger. Your encrypted check-in QR code entry ticket is then automatically emailed to your registered address.",
     },
     {
-      q: "What is the physical pass serial number range (1100–1200)?",
-      a: "Freshers 2K26 has an allocated physical badge quota of 100 passes with serial numbers strictly ranging from 1100 to 1200. These serial numbers are logged into the database and mapped to your registration ID for turnstile verification.",
+      q: "How does the digital QR pass verification work at the entry gate?",
+      a: "Each registered and approved attendee receives a unique encrypted QR code ticket in their email. When you arrive at the venue, simply present your digital QR code on your phone for instant scanning and turnstile admission.",
     },
     {
       q: "Can I register multiple attendees in one transaction?",
@@ -22,7 +22,7 @@ export default function FaqSection() {
     },
     {
       q: "What credentials do I need to present at the gate scanner?",
-      a: "Attendees must present the digital QR code (received via email) on their phone along with a government-issued photo ID (Aadhaar/Driving License/College ID) and your physical badge if collected in advance.",
+      a: "Attendees must present the digital QR code (received via email) on their phone along with a valid student or government-issued photo ID (College ID / Aadhaar / Driving License) for gate verification.",
     },
     {
       q: "What is the poster approval policy before social media sharing?",

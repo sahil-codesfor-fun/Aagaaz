@@ -4,12 +4,14 @@ import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
-import { ArrowUpRight, Menu, X, Sparkles, Sun, Moon } from "lucide-react";
+import { ArrowUpRight, Menu, X, Sparkles, Sun, Moon, LogOut, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTheme } from "next-themes";
+import { useSession, signOut } from "next-auth/react";
 
 export const Header = () => {
+  const { data: session } = useSession();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [hoveredTab, setHoveredTab] = useState<string | null>(null);
@@ -112,16 +114,40 @@ export const Header = () => {
             </button>
           )}
 
-          <Button
-            asChild
-            size="sm"
-            className="group bg-gradient-to-r from-neutral-900 to-neutral-800 dark:golden-obsidian-btn hover:from-neutral-800 hover:to-neutral-700 text-white text-xs font-bold px-4 py-2 rounded-full shadow-sm hover:shadow-md transition-all duration-200 active:scale-95"
-          >
-            <Link href="/register/guest" className="flex items-center gap-1.5">
-              <span>Get Pass</span>
-              <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </Link>
-          </Button>
+          {session?.user ? (
+            <div className="flex items-center gap-2">
+              <Button
+                asChild
+                size="sm"
+                variant="outline"
+                className="text-xs font-mono border-neutral-200 dark:border-neutral-800 bg-neutral-100/80 dark:bg-neutral-900/90 text-neutral-800 dark:text-amber-300 rounded-full"
+              >
+                <Link href={session.user.role === "admin" ? "/admin/dashboard" : "/accounts/dashboard"}>
+                  <ShieldCheck className="w-3.5 h-3.5 mr-1 text-emerald-500" />
+                  {session.user.role === "admin" ? "Admin" : "Accounts"}
+                </Link>
+              </Button>
+              <Button
+                size="sm"
+                variant="ghost"
+                onClick={() => signOut({ callbackUrl: "/login" })}
+                className="text-xs text-rose-600 hover:text-rose-700 hover:bg-rose-50 dark:hover:bg-rose-950/30 rounded-full px-2.5 cursor-pointer"
+              >
+                <LogOut className="w-3.5 h-3.5 mr-1" /> Logout
+              </Button>
+            </div>
+          ) : (
+            <Button
+              asChild
+              size="sm"
+              className="group bg-gradient-to-r from-neutral-900 to-neutral-800 dark:golden-obsidian-btn hover:from-neutral-800 hover:to-neutral-700 text-white text-xs font-bold px-4 py-2 rounded-full shadow-sm hover:shadow-md transition-all duration-200 active:scale-95"
+            >
+              <Link href="/register/guest" className="flex items-center gap-1.5">
+                <span>Get Pass</span>
+                <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </Link>
+            </Button>
+          )}
         </div>
 
         {/* Mobile menu button */}
@@ -176,11 +202,35 @@ export const Header = () => {
                     )}
                   </Button>
                 )}
-                <Button asChild className="w-full bg-neutral-900 text-white text-xs justify-center dark:golden-obsidian-btn">
-                  <Link href="/register/guest" onClick={() => setMobileMenuOpen(false)}>
-                    Get Entry Pass →
-                  </Link>
-                </Button>
+
+                {session?.user ? (
+                  <>
+                    <Button asChild className="w-full bg-neutral-900 text-white text-xs justify-center dark:golden-obsidian-btn">
+                      <Link
+                        href={session.user.role === "admin" ? "/admin/dashboard" : "/accounts/dashboard"}
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
+                        Go to {session.user.role === "admin" ? "Admin" : "Accounts"} Portal →
+                      </Link>
+                    </Button>
+                    <Button
+                      variant="outline"
+                      onClick={() => {
+                        setMobileMenuOpen(false);
+                        signOut({ callbackUrl: "/login" });
+                      }}
+                      className="w-full text-xs justify-center gap-2 border-rose-200 text-rose-600 hover:bg-rose-50"
+                    >
+                      <LogOut className="w-3.5 h-3.5" /> Logout
+                    </Button>
+                  </>
+                ) : (
+                  <Button asChild className="w-full bg-neutral-900 text-white text-xs justify-center dark:golden-obsidian-btn">
+                    <Link href="/register/guest" onClick={() => setMobileMenuOpen(false)}>
+                      Get Entry Pass →
+                    </Link>
+                  </Button>
+                )}
               </div>
             </div>
           </motion.div>

@@ -20,7 +20,7 @@ export default function AboutSection() {
     {
       icon: ShieldAlert,
       title: "Verified Entry Access",
-      desc: "Strict QR-authenticated access and unique serial distribution ensures streamlined, hassle-free gate entries.",
+      desc: "Strict QR-authenticated access ensures streamlined, hassle-free gate entries.",
       badge: "Secured Turnstiles",
     },
   ];
@@ -90,8 +90,8 @@ export default function AboutSection() {
                   <div className="text-neutral-500 text-xs mt-0.5">Main Arena, Geeta University Campus, Panipat</div>
                 </div>
                 <div>
-                  <div className="font-semibold text-neutral-900">Pass Entry Quota</div>
-                  <div className="text-neutral-500 text-xs mt-0.5 font-mono">100 Physical Passes • Serial No. 1100–1200</div>
+                  <div className="font-semibold text-neutral-900">Pass Verification</div>
+                  <div className="text-neutral-500 text-xs mt-0.5 font-mono">Digital QR Passes • Verified Gate Access</div>
                 </div>
                 <div>
                   <div className="font-semibold text-neutral-900">Host Committee</div>

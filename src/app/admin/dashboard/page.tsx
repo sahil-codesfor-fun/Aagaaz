@@ -357,6 +357,27 @@ export default function AdminDashboard() {
     return matchesSearch && matchesStatus;
   });
 
+  const formatAppliedDateTime = (dateStr?: string) => {
+    if (!dateStr) return { date: "N/A", time: "" };
+    try {
+      const d = new Date(dateStr);
+      if (isNaN(d.getTime())) return { date: "N/A", time: "" };
+      const date = d.toLocaleDateString("en-IN", {
+        day: "2-digit",
+        month: "short",
+        year: "numeric",
+      });
+      const time = d.toLocaleTimeString("en-IN", {
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: true,
+      });
+      return { date, time };
+    } catch {
+      return { date: dateStr, time: "" };
+    }
+  };
+
   return (
     <div className="min-h-screen bg-neutral-50/70 dark:bg-[#09090d] pt-28 pb-20 transition-colors duration-300 relative overflow-hidden">
       {/* Background glow effects */}
@@ -376,7 +397,7 @@ export default function AdminDashboard() {
             </h1>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 flex-wrap">
             <Button
               variant="outline"
               size="sm"
@@ -394,6 +415,15 @@ export default function AdminDashboard() {
               className="text-xs border-neutral-200 dark:border-neutral-800 bg-white dark:bg-[#101015] text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-800 cursor-pointer"
             >
               <Download className="w-3.5 h-3.5 mr-1.5" /> Export CSV
+            </Button>
+
+            <Button
+              onClick={() => signOut({ callbackUrl: "/login" })}
+              size="sm"
+              variant="outline"
+              className="text-xs border-rose-200 dark:border-rose-900/60 bg-rose-50/60 dark:bg-rose-950/40 text-rose-600 dark:text-rose-400 hover:bg-rose-100 dark:hover:bg-rose-900/60 hover:text-rose-700 dark:hover:text-rose-300 cursor-pointer font-medium"
+            >
+              <LogOut className="w-3.5 h-3.5 mr-1.5" /> Logout
             </Button>
 
             <DropdownMenu>
@@ -510,6 +540,7 @@ export default function AdminDashboard() {
                     <TableHead className="font-semibold text-neutral-700 dark:text-neutral-300">Reg ID</TableHead>
                     <TableHead className="font-semibold text-neutral-700 dark:text-neutral-300">Student Info</TableHead>
                     <TableHead className="font-semibold text-neutral-700 dark:text-neutral-300">School & Region</TableHead>
+                    <TableHead className="font-semibold text-neutral-700 dark:text-neutral-300">Applied Date & Time</TableHead>
                     <TableHead className="font-semibold text-neutral-700 dark:text-neutral-300">Status</TableHead>
                     <TableHead className="font-semibold text-neutral-700 dark:text-neutral-300 text-right">Actions</TableHead>
                   </TableRow>
@@ -526,6 +557,7 @@ export default function AdminDashboard() {
                     const isOther = user.isOtherSchool || primary?.isOtherSchool;
                     const studentClass = user.studentClass || primary?.studentClass || "12th";
                     const isProcessing = processingAction[user.registrationId];
+                    const applied = formatAppliedDateTime(user.createdAt);
 
                     return (
                       <TableRow key={user.registrationId} className="hover:bg-neutral-50/50 dark:hover:bg-neutral-900/40 border-b border-neutral-200/80 dark:border-neutral-800/80 transition-colors">
@@ -550,6 +582,16 @@ export default function AdminDashboard() {
                           </div>
                           <div className="text-[11px] text-neutral-500 dark:text-neutral-400 font-mono">
                             {city}{state ? `, ${state}` : ""} • Class {studentClass}
+                          </div>
+                        </TableCell>
+
+                        <TableCell>
+                          <div className="font-semibold text-neutral-900 dark:text-white flex items-center gap-1.5 font-mono">
+                            <Clock className="w-3.5 h-3.5 text-amber-500 shrink-0" />
+                            <span>{applied.time || "—"}</span>
+                          </div>
+                          <div className="text-[11px] text-neutral-500 dark:text-neutral-400 font-mono">
+                            {applied.date}
                           </div>
                         </TableCell>
 
@@ -643,9 +685,19 @@ export default function AdminDashboard() {
               <div className="space-y-5 pt-2">
                 {/* Meta details */}
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 p-3.5 rounded-xl bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 font-mono text-[11px]">
-                  <div className="col-span-2">
+                  <div>
                     <span className="text-neutral-400 dark:text-neutral-500 block text-[10px]">REGISTRATION ID</span>
                     <span className="font-bold text-neutral-900 dark:text-white">{selectedUser.registrationId}</span>
+                  </div>
+                  <div>
+                    <span className="text-neutral-400 dark:text-neutral-500 block text-[10px]">APPLIED ON</span>
+                    <span className="font-bold text-neutral-900 dark:text-white flex items-center gap-1">
+                      <Clock className="w-3 h-3 text-amber-500" />
+                      {formatAppliedDateTime(selectedUser.createdAt).time}
+                    </span>
+                    <span className="text-[10px] text-neutral-400 dark:text-neutral-500 block">
+                      {formatAppliedDateTime(selectedUser.createdAt).date}
+                    </span>
                   </div>
                   <div>
                     <span className="text-neutral-400 dark:text-neutral-500 block text-[10px]">PASS CLASS</span>

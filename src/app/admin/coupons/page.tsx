@@ -234,15 +234,24 @@ const Coupons = () => {
               </DialogContent>
             </Dialog>
 
+            <Button
+              variant="outline"
+              size="sm"
+              className="text-xs border-rose-200 bg-rose-50/50 text-rose-600 hover:text-rose-700 hover:bg-rose-100 cursor-pointer font-medium"
+              onClick={() => signOut({ callbackUrl: "/login" })}
+            >
+              <LogOut className="w-3.5 h-3.5 mr-1.5" /> Logout
+            </Button>
+
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="outline" size="sm" className="text-xs border-neutral-200">
+                <Button variant="outline" size="sm" className="text-xs border-neutral-200 cursor-pointer">
                   <Menu className="w-4 h-4" />
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="text-xs">
-                <Link href="/admin/dashboard"><DropdownMenuItem>Dashboard</DropdownMenuItem></Link>
-                <DropdownMenuItem className="text-rose-600" onClick={() => signOut({ callbackUrl: "/login" })}>
+                <Link href="/admin/dashboard"><DropdownMenuItem className="cursor-pointer">Dashboard Overview</DropdownMenuItem></Link>
+                <DropdownMenuItem className="text-rose-600 cursor-pointer" onClick={() => signOut({ callbackUrl: "/login" })}>
                   <LogOut className="mr-2 w-3.5 h-3.5" /> Logout
                 </DropdownMenuItem>
               </DropdownMenuContent>

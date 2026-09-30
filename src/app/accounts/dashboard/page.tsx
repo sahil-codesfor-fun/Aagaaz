@@ -130,6 +130,27 @@ export default function AccountsDashboard() {
     }
   };
 
+  const formatAppliedDateTime = (dateStr?: string) => {
+    if (!dateStr) return { date: "N/A", time: "" };
+    try {
+      const d = new Date(dateStr);
+      if (isNaN(d.getTime())) return { date: "N/A", time: "" };
+      const date = d.toLocaleDateString("en-IN", {
+        day: "2-digit",
+        month: "short",
+        year: "numeric",
+      });
+      const time = d.toLocaleTimeString("en-IN", {
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: true,
+      });
+      return { date, time };
+    } catch {
+      return { date: dateStr, time: "" };
+    }
+  };
+
   const filteredRegistrations = registrations.filter(r => {
     const primary = r.members?.[0];
     const matchesSearch =
@@ -165,7 +186,7 @@ export default function AccountsDashboard() {
               size="sm"
               onClick={fetchData}
               disabled={isLoading}
-              className="text-xs border-neutral-200"
+              className="text-xs border-neutral-200 cursor-pointer"
             >
               <RefreshCw className={`w-3.5 h-3.5 mr-1.5 ${isLoading ? "animate-spin" : ""}`} /> Refresh
             </Button>
@@ -173,7 +194,7 @@ export default function AccountsDashboard() {
             <Button
               variant="outline"
               size="sm"
-              className="text-xs text-rose-600 hover:text-rose-700 border-neutral-200"
+              className="text-xs border-rose-200 bg-rose-50/50 text-rose-600 hover:text-rose-700 hover:bg-rose-100 cursor-pointer font-medium"
               onClick={() => signOut({ callbackUrl: "/login" })}
             >
               <LogOut className="w-3.5 h-3.5 mr-1.5" /> Logout
@@ -222,7 +243,7 @@ export default function AccountsDashboard() {
             <div className="flex items-center gap-1.5 bg-neutral-100 p-1 rounded-lg border border-neutral-200/80 text-xs">
               <button
                 onClick={() => setStatusFilter("all")}
-                className={`px-3 py-1 rounded-md font-medium transition ${
+                className={`px-3 py-1 rounded-md font-medium transition cursor-pointer ${
                   statusFilter === "all" ? "bg-white shadow-2xs text-neutral-900" : "text-neutral-500 hover:text-neutral-900"
                 }`}
               >
@@ -230,7 +251,7 @@ export default function AccountsDashboard() {
               </button>
               <button
                 onClick={() => setStatusFilter("pending")}
-                className={`px-3 py-1 rounded-md font-medium transition ${
+                className={`px-3 py-1 rounded-md font-medium transition cursor-pointer ${
                   statusFilter === "pending" ? "bg-white shadow-2xs text-neutral-900" : "text-neutral-500 hover:text-neutral-900"
                 }`}
               >
@@ -238,7 +259,7 @@ export default function AccountsDashboard() {
               </button>
               <button
                 onClick={() => setStatusFilter("verified")}
-                className={`px-3 py-1 rounded-md font-medium transition ${
+                className={`px-3 py-1 rounded-md font-medium transition cursor-pointer ${
                   statusFilter === "verified" ? "bg-white shadow-2xs text-neutral-900" : "text-neutral-500 hover:text-neutral-900"
                 }`}
               >
@@ -263,6 +284,7 @@ export default function AccountsDashboard() {
                   <TableRow>
                     <TableHead className="font-semibold text-neutral-700">Reg ID</TableHead>
                     <TableHead className="font-semibold text-neutral-700">Primary Contact</TableHead>
+                    <TableHead className="font-semibold text-neutral-700">Applied Date & Time</TableHead>
                     <TableHead className="font-semibold text-neutral-700">Guests</TableHead>
                     <TableHead className="font-semibold text-neutral-700">UTR / Reference</TableHead>
                     <TableHead className="font-semibold text-neutral-700">Payable Amount</TableHead>
@@ -274,6 +296,7 @@ export default function AccountsDashboard() {
                   {filteredRegistrations.map((user) => {
                     const primary = user.members?.[0];
                     const isProcessing = loadingStatus[user.registrationId];
+                    const applied = formatAppliedDateTime(user.createdAt);
 
                     return (
                       <TableRow key={user.registrationId} className="hover:bg-neutral-50/50">
@@ -285,6 +308,16 @@ export default function AccountsDashboard() {
                           <div className="font-medium text-neutral-900">{primary?.name || "N/A"}</div>
                           <div className="text-[11px] text-neutral-400">{primary?.email || "N/A"}</div>
                           <div className="text-[10px] text-neutral-400">{primary?.whatsapp || ""}</div>
+                        </TableCell>
+
+                        <TableCell>
+                          <div className="font-semibold text-neutral-900 flex items-center gap-1.5 font-mono">
+                            <Clock className="w-3.5 h-3.5 text-amber-500 shrink-0" />
+                            <span>{applied.time || "—"}</span>
+                          </div>
+                          <div className="text-[11px] text-neutral-400 font-mono">
+                            {applied.date}
+                          </div>
                         </TableCell>
 
                         <TableCell className="font-medium">

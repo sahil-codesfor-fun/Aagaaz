@@ -46,8 +46,8 @@ export default function EventArtistSection() {
     {
       icon: ShieldCheck,
       title: "Verified Pass Protocol",
-      desc: "Strict QR ticket authentication and sequential physical badge check (Serial Numbers: 1100–1200) at gate turnstiles.",
-      badge: "100 Passes Quota",
+      desc: "Instant QR ticket authentication and turnstile verification at gate entry.",
+      badge: "Verified Entry",
     },
   ];
 
@@ -125,17 +125,17 @@ export default function EventArtistSection() {
                 />
               </div>
 
-              {/* Streamlined Pass Booking & Quota Action Bar */}
+              {/* Streamlined Pass Booking Action Bar */}
               <div className="p-3.5 sm:p-4 bg-neutral-950 border-t border-neutral-800/80 dark:border-neutral-800 space-y-3 shrink-0">
                 {/* 3 Quick Specs */}
                 <div className="grid grid-cols-3 gap-2.5 text-left font-mono">
                   <div className="p-2 sm:p-2.5 rounded-xl bg-neutral-900/90 border border-neutral-800">
-                    <div className="text-[8.5px] sm:text-[9px] text-neutral-400 uppercase font-semibold">Quota</div>
-                    <div className="text-xs sm:text-[13px] font-bold text-white leading-tight mt-0.5">100 Passes</div>
+                    <div className="text-[8.5px] sm:text-[9px] text-neutral-400 uppercase font-semibold">Access</div>
+                    <div className="text-xs sm:text-[13px] font-bold text-white leading-tight mt-0.5">All Students</div>
                   </div>
                   <div className="p-2 sm:p-2.5 rounded-xl bg-neutral-900/90 border border-neutral-800">
-                    <div className="text-[8.5px] sm:text-[9px] text-neutral-400 uppercase font-semibold">Serial</div>
-                    <div className="text-xs sm:text-[13px] font-bold text-amber-300 leading-tight mt-0.5"># 1100–1200</div>
+                    <div className="text-[8.5px] sm:text-[9px] text-neutral-400 uppercase font-semibold">Pass Type</div>
+                    <div className="text-xs sm:text-[13px] font-bold text-amber-300 leading-tight mt-0.5">Digital QR</div>
                   </div>
                   <div className="p-2 sm:p-2.5 rounded-xl bg-neutral-900/90 border border-neutral-800">
                     <div className="text-[8.5px] sm:text-[9px] text-neutral-400 uppercase font-semibold">Entry</div>
@@ -294,7 +294,7 @@ export default function EventArtistSection() {
                 </span>
               </div>
               <p className="text-xs text-neutral-600 dark:text-neutral-400 truncate">
-                Strict turnstile scan for <strong className="text-neutral-900 dark:text-white">100 passes</strong> with sequential serial range <strong className="text-amber-600 dark:text-amber-300 font-mono"># 1100–1200</strong>.
+                Fast turnstile verification for all registered attendee <strong className="text-neutral-900 dark:text-white">QR passes</strong>.
               </p>
             </motion.div>
 

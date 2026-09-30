@@ -28,7 +28,7 @@ const registrationOptions = [
       "Access to Main Arena & Star Night Concert",
       "Live Headline Performance by Sunanda Sharma",
       "Encrypted Digital QR Check-in Pass",
-      "Sequential Turnstile Access (Serial # 1100–1200)",
+      "Direct Turnstile Access via Digital QR Pass",
       "Instant UTR payment verification & email receipt",
     ],
     link: "/register/guest",
@@ -94,7 +94,7 @@ export function RegisterSection() {
                   <span className="text-neutral-900 font-bold hidden sm:inline">AAGAAZ 2K26</span>
                 </div>
                 <div className="text-[11px] font-mono bg-neutral-950 text-amber-300 px-3 py-1 rounded-full font-bold shadow-xs">
-                  100 PASSES QUOTA
+                  OPEN REGISTRATION
                 </div>
               </div>
 
@@ -158,11 +158,11 @@ export function RegisterSection() {
                   {/* Right Physical Ticket Cutout Notch */}
                   <div className="absolute -right-3.5 -top-3.5 w-7 h-7 rounded-full bg-neutral-50 dark:bg-[#09090d] border-2 border-amber-400/90 dark:border-amber-400/60 shadow-[inset_0_2px_4px_rgba(0,0,0,0.18)] z-20 hidden sm:block" />
                   
-                  {/* Left: Barcode & Serial Allocation */}
+                  {/* Left: Barcode & Digital Pass Allocation */}
                   <div className="space-y-1 text-left self-start sm:self-auto">
                     <div className="flex items-center gap-2 text-xs font-mono text-neutral-900 dark:text-white font-bold">
                       <ShieldCheck className="w-4 h-4 text-emerald-700 dark:text-emerald-400" />
-                      <span>ALLOCATED SERIAL: # 1100–1200</span>
+                      <span>AUTHENTICATED DIGITAL PASS</span>
                     </div>
                     <div className="text-xs font-mono tracking-widest text-neutral-700 dark:text-neutral-400 font-bold">
                       |||| | |||| || ||||| |||| |||

@@ -19,7 +19,7 @@ export default function PosterWorkflowSection() {
       icon: Eye,
       status: "Completed",
       badgeClass: "bg-emerald-50 text-emerald-700 border-emerald-200",
-      desc: "Verification of serial numbers (1100–1200), venue details, sponsor positioning, and pass distribution protocols.",
+      desc: "Verification of event details, venue safety protocols, sponsor positioning, and pass distribution workflows.",
     },
     {
       step: "03",

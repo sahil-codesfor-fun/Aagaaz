@@ -326,12 +326,12 @@ export default function GuestRegistration() {
             </h1>
           </div>
 
-          {/* Quota Badge */}
+          {/* Verification Badge */}
           <div className="flex items-center gap-3 bg-amber-50 dark:bg-amber-950/40 px-4 py-2 rounded-xl border border-amber-200 dark:border-amber-800/80 text-xs font-mono text-amber-900 dark:text-amber-300 self-start sm:self-auto shrink-0 shadow-2xs">
             <Award className="w-5 h-5 text-amber-600 dark:text-amber-400 shrink-0" />
             <div>
               <span className="font-bold block text-xs sm:text-sm">
-                11th & 12th Standard Passes Quota
+                11th & 12th Standard Passes
               </span>
               <span className="text-[11px] text-amber-700 dark:text-amber-400/90 font-medium">
                 Mandatory ID Verification

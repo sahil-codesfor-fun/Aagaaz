@@ -287,7 +287,7 @@ export default function HeroSection() {
               </Link>
             </motion.div>
 
-            {/* Verified Pass Quota Pill */}
+            {/* Verified Pass Badges */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -296,11 +296,11 @@ export default function HeroSection() {
             >
               <div className="flex items-center gap-1.5 bg-neutral-100/90 dark:bg-[#101015]/90 px-3 py-1 rounded-lg border border-neutral-200/80 dark:border-neutral-800 shadow-xs text-[11px]">
                 <Award className="w-3.5 h-3.5 text-neutral-700 dark:text-amber-400" />
-                <span>Physical Quota: 100 Passes</span>
+                <span>Official Student Entry Passes</span>
               </div>
               <div className="flex items-center gap-1.5 bg-amber-50 dark:bg-amber-950/40 px-3 py-1 rounded-lg border border-amber-200 dark:border-amber-800/80 text-amber-900 dark:text-amber-300 font-bold shadow-xs dark:shadow-[0_0_10px_rgba(251,191,36,0.15)] text-[11px]">
                 <ShieldCheck className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400" />
-                <span>Serial # 1100–1200</span>
+                <span>Instant QR Verification</span>
               </div>
             </motion.div>
 
@@ -348,7 +348,7 @@ export default function HeroSection() {
                     </span>
                   </div>
                   <div className="text-[10px] sm:text-xs font-bold font-mono bg-neutral-800/90 dark:bg-amber-950/40 text-amber-300 px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-md border border-neutral-700 dark:border-amber-500/40 shadow-xs">
-                    SERIAL # 1100–1200
+                    OFFICIAL ENTRY PASS
                   </div>
                 </div>
 
@@ -397,12 +397,12 @@ export default function HeroSection() {
                   {/* 3 Specs Cards with subtle glow */}
                   <div className="grid grid-cols-3 gap-2.5 pt-1">
                     <div className="p-2.5 sm:p-3 rounded-2xl bg-neutral-900/90 dark:bg-[#15151c] border border-neutral-800 dark:border-neutral-800/90 hover:border-amber-400/40 transition-colors text-left shadow-inner">
-                      <div className="text-[9px] sm:text-[10px] font-mono text-neutral-400 uppercase tracking-wider">Quota</div>
-                      <div className="text-xs sm:text-sm font-black text-white mt-1">100 Passes</div>
+                      <div className="text-[9px] sm:text-[10px] font-mono text-neutral-400 uppercase tracking-wider">Access</div>
+                      <div className="text-xs sm:text-sm font-black text-white mt-1">Open Registration</div>
                     </div>
                     <div className="p-2.5 sm:p-3 rounded-2xl bg-neutral-900/90 dark:bg-[#15151c] border border-neutral-800 dark:border-amber-400/30 hover:border-amber-400/60 transition-colors text-left shadow-inner">
-                      <div className="text-[9px] sm:text-[10px] font-mono text-amber-400/80 uppercase tracking-wider">Serial</div>
-                      <div className="text-xs sm:text-sm font-black text-amber-300 font-mono mt-1">1100–1200</div>
+                      <div className="text-[9px] sm:text-[10px] font-mono text-amber-400/80 uppercase tracking-wider">Format</div>
+                      <div className="text-xs sm:text-sm font-black text-amber-300 font-mono mt-1">Digital Pass</div>
                     </div>
                     <div className="p-2.5 sm:p-3 rounded-2xl bg-neutral-900/90 dark:bg-[#15151c] border border-neutral-800 dark:border-neutral-800/90 hover:border-emerald-400/40 transition-colors text-left shadow-inner">
                       <div className="text-[9px] sm:text-[10px] font-mono text-emerald-400/80 uppercase tracking-wider">Entry</div>
