@@ -1,10 +1,21 @@
 import { NextResponse } from "next/server";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
 import GuestDetails from "@/models/Guest";
 import { connectToDatabase } from "@/lib/mongodb";
 
 export async function POST(req: Request) {
     try {
-        await connectToDatabase(); // Ensure DB connection
+        // Enforce accountant or admin authentication check
+        const session = await getServerSession(authOptions);
+        if (!session || (session.user.role !== "accountant" && session.user.role !== "admin")) {
+            return NextResponse.json(
+                { success: false, message: "Unauthorized: Accounts officer access required." },
+                { status: 401 }
+            );
+        }
+
+        await connectToDatabase();
 
         const { registrationId, status } = await req.json();
 
@@ -16,8 +27,7 @@ export async function POST(req: Request) {
             return NextResponse.json({ success: false, message: "Invalid status. Must be 'verified' or 'failed'." }, { status: 400 });
         }
 
-        const user =
-            (await GuestDetails.findOne({ registrationId }));
+        const user = await GuestDetails.findOne({ registrationId });
 
         if (!user) {
             return NextResponse.json({ success: false, message: "User not found" }, { status: 404 });

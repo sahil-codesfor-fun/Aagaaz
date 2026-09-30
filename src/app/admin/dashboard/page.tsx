@@ -45,6 +45,10 @@ import {
 } from "@/components/ui/dropdown-menu";
 import Link from "next/link";
 import { Input } from "@/components/ui/input";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import Loading from "@/components/layout/Loading";
+import AccessDenied from "@/components/layout/AccessDenied";
 
 interface Member {
   name: string;
@@ -88,6 +92,9 @@ interface Registration {
 }
 
 export default function AdminDashboard() {
+  const { data: session, status } = useSession();
+  const router = useRouter();
+
   const [isLoading, setIsLoading] = useState(false);
   const [isLoadingDetail, setIsLoadingDetail] = useState(false);
   const [registrations, setRegistrations] = useState<Registration[]>([]);
@@ -109,8 +116,24 @@ export default function AdminDashboard() {
   });
 
   useEffect(() => {
-    fetchData();
-  }, []);
+    if (status === "unauthenticated") {
+      router.push("/login");
+    }
+  }, [status, router]);
+
+  useEffect(() => {
+    if (status === "authenticated" && session?.user?.role === "admin") {
+      fetchData();
+    }
+  }, [status, session]);
+
+  if (status === "loading") {
+    return <Loading />;
+  }
+
+  if (!session || session.user.role !== "admin") {
+    return <AccessDenied />;
+  }
 
   const fetchData = async () => {
     setIsLoading(true);

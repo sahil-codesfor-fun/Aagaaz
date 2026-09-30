@@ -1,16 +1,27 @@
 import { NextRequest, NextResponse } from "next/server";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
 import GuestDetails from "@/models/Guest";
 import Coupon from "@/models/Coupon";
 import { connectToDatabase } from "@/lib/mongodb";
 
 export async function GET(request: NextRequest) {
     try {
+        // Enforce server-side authentication check
+        const session = await getServerSession(authOptions);
+        if (!session || (session.user.role !== "admin" && session.user.role !== "accountant")) {
+            return NextResponse.json(
+                { success: false, message: "Unauthorized: Access restricted to authorized personnel" },
+                { status: 401 }
+            );
+        }
+
         await connectToDatabase();
 
         const { searchParams } = new URL(request.url);
         const registrationId = searchParams.get("registrationId") || searchParams.get("id");
 
-        // If specific registration is requested, return full document including images
+        // If specific registration is requested, return full document including proof images
         if (registrationId) {
             const guest: any = await GuestDetails.findOne({
                 $or: [

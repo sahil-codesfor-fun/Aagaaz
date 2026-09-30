@@ -25,7 +25,7 @@ const AccountsPage = () => {
     );
   }
 
-  if (!session || session.user.role !== "accountant") {
+  if (!session || (session.user.role !== "accountant" && session.user.role !== "admin")) {
     return (
       <>
         <AccessDenied />

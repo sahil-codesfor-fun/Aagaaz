@@ -1,21 +1,30 @@
 "use client";
 
 import { signIn } from "next-auth/react";
-import { useState } from "react";
-import { useRouter } from "next/navigation";
-import { Lock, Mail, ShieldCheck, Loader2, ArrowRight, Eye, EyeOff } from "lucide-react";
+import { useState, useEffect, Suspense } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { Lock, Mail, ShieldCheck, Loader2, ArrowRight, Eye, EyeOff, ShieldAlert } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { motion } from "framer-motion";
+import Loading from "@/components/layout/Loading";
 
-const LoginPage = () => {
+const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+  const searchParams = useSearchParams();
+
+  useEffect(() => {
+    const errorParam = searchParams.get("error");
+    if (errorParam === "AccessDenied") {
+      setError("Access Restricted: Please log in with authorized administrative credentials.");
+    }
+  }, [searchParams]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -39,10 +48,20 @@ const LoginPage = () => {
       const res = await fetch("/api/auth/session");
       const session = await res.json();
 
+      const callbackUrl = searchParams.get("callbackUrl");
+
       if (session?.user?.role === "admin") {
-        router.push("/admin/dashboard");
+        if (callbackUrl && (callbackUrl.startsWith("/admin") || callbackUrl.startsWith("/accounts"))) {
+          router.push(callbackUrl);
+        } else {
+          router.push("/admin/dashboard");
+        }
       } else if (session?.user?.role === "accountant") {
-        router.push("/accounts");
+        if (callbackUrl && callbackUrl.startsWith("/accounts")) {
+          router.push(callbackUrl);
+        } else {
+          router.push("/accounts/dashboard");
+        }
       } else {
         setError("Unauthorized user role.");
         setLoading(false);
@@ -87,9 +106,10 @@ const LoginPage = () => {
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
-              className="text-xs font-semibold text-rose-700 dark:text-rose-400 bg-rose-50 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-900/60 p-3 rounded-xl text-center"
+              className="text-xs font-semibold text-rose-700 dark:text-rose-400 bg-rose-50 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-900/60 p-3 rounded-xl text-center flex items-center justify-center gap-2"
             >
-              {error}
+              <ShieldAlert className="w-4 h-4 shrink-0 text-rose-600 dark:text-rose-400" />
+              <span>{error}</span>
             </motion.div>
           )}
 
@@ -170,4 +190,10 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default function LoginPage() {
+  return (
+    <Suspense fallback={<Loading />}>
+      <LoginForm />
+    </Suspense>
+  );
+}

@@ -10,7 +10,10 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { LogOut, Menu, Pencil, Ticket, Plus, Tag, ArrowLeft, RefreshCw } from "lucide-react";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import Link from "next/link";
-import { signOut } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import Loading from "@/components/layout/Loading";
+import AccessDenied from "@/components/layout/AccessDenied";
 
 interface Coupon {
   _id: string;
@@ -21,6 +24,9 @@ interface Coupon {
 }
 
 const Coupons = () => {
+  const { data: session, status } = useSession();
+  const router = useRouter();
+
   const [coupons, setCoupons] = useState<Coupon[]>([]);
   const [newCoupon, setNewCoupon] = useState({ name: "", assignedTo: "", quantity: 1, discount: 0 });
   const [editCoupon, setEditCoupon] = useState<Coupon | null>(null);
@@ -30,8 +36,24 @@ const Coupons = () => {
   const [editLoading, setEditLoading] = useState(false);
 
   useEffect(() => {
-    fetchCoupons();
-  }, []);
+    if (status === "unauthenticated") {
+      router.push("/login");
+    }
+  }, [status, router]);
+
+  useEffect(() => {
+    if (status === "authenticated" && session?.user?.role === "admin") {
+      fetchCoupons();
+    }
+  }, [status, session]);
+
+  if (status === "loading") {
+    return <Loading />;
+  }
+
+  if (!session || session.user.role !== "admin") {
+    return <AccessDenied />;
+  }
 
   const fetchCoupons = async () => {
     setLoading(true);

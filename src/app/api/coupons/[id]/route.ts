@@ -1,4 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
 import { connectToDatabase } from "@/lib/mongodb";
 import Coupon from "@/models/Coupon";
 
@@ -7,10 +9,15 @@ interface Params {
 }
 
 export async function PUT(req: NextRequest, props: Params) {
-    const params = await props.params;
-    await connectToDatabase();
-
     try {
+        const session = await getServerSession(authOptions);
+        if (!session || session.user.role !== "admin") {
+            return NextResponse.json({ error: "Unauthorized: Administrator access required" }, { status: 401 });
+        }
+
+        const params = await props.params;
+        await connectToDatabase();
+
         const id = (await params.id) || null;
         if (!id) {
             return NextResponse.json({ error: "Coupon ID is required" }, { status: 400 });

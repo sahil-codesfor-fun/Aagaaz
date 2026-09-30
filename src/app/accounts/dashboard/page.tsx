@@ -5,11 +5,13 @@ import { Button } from "@/components/ui/button";
 import {
   Table, TableBody, TableCell, TableHead, TableHeader, TableRow
 } from "@/components/ui/table";
-import { Badge } from "@/components/ui/badge";
-import { signOut } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { Check, Loader2, X, RefreshCw, LogOut, Search, Clock, CheckCircle2, XCircle, ShieldCheck } from "lucide-react";
 import { Input } from "@/components/ui/input";
+import Loading from "@/components/layout/Loading";
+import AccessDenied from "@/components/layout/AccessDenied";
 
 interface Member {
   name: string;
@@ -30,6 +32,9 @@ interface Registration {
 }
 
 export default function AccountsDashboard() {
+  const { data: session, status } = useSession();
+  const router = useRouter();
+
   const [isLoading, setIsLoading] = useState(false);
   const [registrations, setRegistrations] = useState<Registration[]>([]);
   const [loadingStatus, setLoadingStatus] = useState<{ [key: string]: boolean }>({});
@@ -45,8 +50,24 @@ export default function AccountsDashboard() {
   });
 
   useEffect(() => {
-    fetchData();
-  }, []);
+    if (status === "unauthenticated") {
+      router.push("/login");
+    }
+  }, [status, router]);
+
+  useEffect(() => {
+    if (status === "authenticated" && (session?.user?.role === "accountant" || session?.user?.role === "admin")) {
+      fetchData();
+    }
+  }, [status, session]);
+
+  if (status === "loading") {
+    return <Loading />;
+  }
+
+  if (!session || (session.user.role !== "accountant" && session.user.role !== "admin")) {
+    return <AccessDenied />;
+  }
 
   const fetchData = async () => {
     setIsLoading(true);

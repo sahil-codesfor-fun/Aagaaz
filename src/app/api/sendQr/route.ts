@@ -1,9 +1,15 @@
 import { NextResponse } from "next/server";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
 import nodemailer from "nodemailer";
-import { v4 as uuidv4 } from "uuid";
 
 export async function POST(req: Request) {
   try {
+    const session = await getServerSession(authOptions);
+    if (!session || (session.user.role !== "admin" && session.user.role !== "accountant")) {
+      return NextResponse.json({ success: false, message: "Unauthorized: Staff access required" }, { status: 401 });
+    }
+
     const { email, qrCodeImage, name, registrationId, totalMembers } =
       await req.json();
 
@@ -178,12 +184,12 @@ Geeta University
 </div>
 `,
       attachments: [
-{
-filename: "ticket-qr.png",
-content: qrBuffer,
-cid: "qrcode"
-}
-],
+        {
+          filename: "ticket-qr.png",
+          content: qrBuffer,
+          cid: "qrcode",
+        },
+      ],
     });
 
     return NextResponse.json({

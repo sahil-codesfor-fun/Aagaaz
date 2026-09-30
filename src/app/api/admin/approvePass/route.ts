@@ -1,4 +1,6 @@
 import { NextResponse } from "next/server";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
 import { connectToDatabase } from "@/lib/mongodb";
 import GuestDetails from "@/models/Guest";
 import nodemailer from "nodemailer";
@@ -6,6 +8,15 @@ import QRCode from "qrcode";
 
 export async function POST(req: Request) {
   try {
+    // Enforce admin-only authentication check
+    const session = await getServerSession(authOptions);
+    if (!session || session.user.role !== "admin") {
+      return NextResponse.json(
+        { success: false, message: "Unauthorized: Administrator access required." },
+        { status: 401 }
+      );
+    }
+
     await connectToDatabase();
 
     const { registrationId, action, reason } = await req.json();
