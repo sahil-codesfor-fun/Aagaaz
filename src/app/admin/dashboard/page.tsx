@@ -390,7 +390,7 @@ export default function AdminDashboard() {
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-neutral-200 dark:border-neutral-800">
           <div>
             <div className="text-[11px] font-mono tracking-wider uppercase text-neutral-400 dark:text-neutral-500">
-              Aagaaz 2K26 Administration Portal
+              Aaghaz 2K26 Administration Portal
             </div>
             <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-neutral-900 dark:text-white">
               Student ID Verification & Pass Approval

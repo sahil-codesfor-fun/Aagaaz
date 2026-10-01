@@ -21,7 +21,7 @@ const Footer = () => {
               </div>
               <div className="flex flex-col">
                 <span className="font-extrabold text-neutral-900 dark:text-white text-base leading-tight">
-                  Aagaaz 2K26
+                  Aaghaz 2K26
                 </span>
                 <span className="text-[11px] font-mono text-neutral-400 dark:text-amber-400/80 font-semibold uppercase">
                   Star Night • Geeta University
@@ -114,7 +114,7 @@ const Footer = () => {
 
         {/* Bottom bar */}
         <div className="border-t border-neutral-200 dark:border-neutral-800 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-neutral-400">
-          <p>© {currentYear} Geeta University • Aagaaz 2K26 Star Night. All rights reserved.</p>
+          <p>© {currentYear} Geeta University • Aaghaz 2K26 Star Night. All rights reserved.</p>
           <div className="flex items-center gap-6">
             <Link href="/login" className="hover:text-neutral-700 dark:hover:text-white transition">
               Staff Portal

@@ -65,7 +65,7 @@ export const Header = () => {
           </motion.div>
           <div className="flex flex-col">
             <span className="font-black text-base sm:text-lg tracking-tight text-neutral-950 dark:text-white group-hover:text-neutral-700 dark:group-hover:text-amber-300 transition leading-tight">
-              Aagaaz 2K26
+              Aaghaz 2K26
             </span>
             <span className="text-[11px] sm:text-xs font-mono tracking-wider uppercase text-neutral-500 dark:text-amber-400/90 font-bold">
               Star Night • Geeta University

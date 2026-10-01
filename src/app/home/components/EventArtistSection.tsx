@@ -39,9 +39,9 @@ export default function EventArtistSection() {
     },
     {
       icon: Users,
-      title: "Aagaaz 2K26 Cultural Fest",
+      title: "Aaghaz 2K26 Cultural Fest",
       desc: "The flagship annual cultural celebration welcoming incoming students and uniting the Geeta University community.",
-      badge: "Aagaaz 2K26",
+      badge: "Aaghaz 2K26",
     },
     {
       icon: ShieldCheck,
@@ -82,7 +82,7 @@ export default function EventArtistSection() {
 
           <div className="flex items-center gap-2 text-xs font-mono bg-neutral-100 dark:bg-neutral-900 px-3.5 py-1.5 rounded-full border border-neutral-200 dark:border-neutral-800 shadow-2xs self-start sm:self-auto">
             <Radio className="w-3 h-3 text-rose-500 animate-pulse" />
-            <span className="text-neutral-800 dark:text-neutral-200 font-bold text-xs">Aagaaz 2K26 Star Night • Geeta University</span>
+            <span className="text-neutral-800 dark:text-neutral-200 font-bold text-xs">Aaghaz 2K26 Star Night • Geeta University</span>
           </div>
         </motion.div>
 
@@ -116,8 +116,8 @@ export default function EventArtistSection() {
               {/* Pristine Enlarged Poster Container */}
               <div className="relative w-full h-[430px] sm:h-[470px] lg:h-[490px] xl:h-[520px] bg-neutral-950 overflow-hidden flex items-center justify-center p-1.5">
                 <Image
-                  src="/poster.jpeg"
-                  alt="Sunanda Sharma Live Concert Official Poster - Aagaaz 2K26 Geeta University"
+                  src="/poster2.jpeg"
+                  alt="Sunanda Sharma Live Concert Official Poster - Aaghaz 2K26 Geeta University"
                   fill
                   sizes="(max-width: 768px) 100vw, 550px"
                   className="object-contain object-center transition-transform duration-700 group-hover:scale-[1.02]"

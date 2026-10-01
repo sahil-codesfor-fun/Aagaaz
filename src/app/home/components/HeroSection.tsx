@@ -174,7 +174,7 @@ export default function HeroSection() {
                   transition={{ duration: 0.5, delay: 0.22, ease: [0.22, 1, 0.36, 1] }}
                   className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-neutral-950 dark:text-white leading-[0.95] dark:drop-shadow-[0_0_20px_rgba(255,255,255,0.2)]"
                 >
-                  AAGAAZ
+                  AAGHAZ
                 </motion.span>
                 <motion.span
                   initial={{ opacity: 0, scale: 0.92, y: 18 }}
@@ -250,7 +250,7 @@ export default function HeroSection() {
               transition={{ duration: 0.45, delay: 0.68 }}
               className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-300 max-w-lg leading-relaxed"
             >
-              Welcome to the official flagship celebration of Aagaaz 2K26 at Geeta University. Experience live headline performances by Sunanda Sharma and authenticated digital pass entry.
+              Welcome to the official flagship celebration of Aaghaz 2K26 at Geeta University. Experience live headline performances by Sunanda Sharma and authenticated digital pass entry.
             </motion.p>
 
             {/* Step 6: CTAs (Clean in Light Mode, Golden Obsidian in Dark Mode) */}
@@ -355,8 +355,8 @@ export default function HeroSection() {
                 {/* Responsive Concert Stage Image Frame (16:9 / 16:10 scaled for Windows Screens) */}
                 <div className="relative aspect-[16/10] sm:aspect-[16/9] w-full min-h-[220px] sm:min-h-[250px] md:min-h-[275px] max-h-[310px] overflow-hidden bg-neutral-900">
                   <Image
-                    src="/aagaaz_concert_2k26.jpg"
-                    alt="Sunanda Sharma Live at Aagaaz 2K26 Star Night"
+                    src="/aaghaz_concert_2k26.jpg"
+                    alt="Sunanda Sharma Live at Aaghaz 2K26 Star Night"
                     fill
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1536px) 480px, 520px"
                     className="object-cover object-[center_20%] transition-transform duration-700 group-hover:scale-105"
@@ -390,7 +390,7 @@ export default function HeroSection() {
                     <p className="text-xs sm:text-sm text-neutral-400 dark:text-amber-400/90 font-mono mt-1 flex items-center gap-2">
                       <span>Live Headliner</span>
                       <span className="text-amber-500">•</span>
-                      <span>Aagaaz 2K26 Star Night</span>
+                      <span>Aaghaz 2K26 Star Night</span>
                     </p>
                   </div>
 

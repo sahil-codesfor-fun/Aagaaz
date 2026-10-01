@@ -45,7 +45,7 @@ export async function POST(req: Request) {
     const registrationId = uuidv4();
 
     const qrCodeURL = await QRCode.toDataURL(
-      `${process.env.NEXTAUTH_URL || "https://aagaaz-gu.vercel.app"}/checkin?regId=${registrationId}`
+      `${process.env.NEXTAUTH_URL || "https://aaghaz-gu.vercel.app"}/checkin?regId=${registrationId}`
     );
 
     console.log("Generated QR for student registration:", registrationId);
@@ -105,9 +105,9 @@ export async function POST(req: Request) {
     // EMAIL TO USER
     try {
       await transporter.sendMail({
-        from: `"Aagaaz 2K26" <${process.env.EMAIL_USER}>`,
+        from: `"Aaghaz 2K26" <${process.env.EMAIL_USER}>`,
         to: email,
-        subject: "Aagaaz 2K26 Registration Received - Pending Verification",
+        subject: "Aaghaz 2K26 Registration Received - Pending Verification",
         html: `
 <div style="background:#f3f4f6;padding:40px 10px;font-family:Arial,Helvetica,sans-serif">
 
@@ -118,7 +118,7 @@ style="background:white;border-radius:10px;overflow:hidden;box-shadow:0 8px 20px
 <tr>
 <td style="background:linear-gradient(135deg,#2563eb,#1e40af);color:white;padding:30px;text-align:center">
 
-<h1 style="margin:0;font-size:28px">Aagaaz 2K26</h1>
+<h1 style="margin:0;font-size:28px">Aaghaz 2K26</h1>
 <p style="margin:6px 0 0 0;font-size:14px">Geeta University</p>
 
 </td>
@@ -133,7 +133,7 @@ style="background:white;border-radius:10px;overflow:hidden;box-shadow:0 8px 20px
 <p>Hello <strong>${name}</strong>,</p>
 
 <p>
-Your registration request for <strong>Aagaaz 2K26</strong> has been successfully received.
+Your registration request for <strong>Aaghaz 2K26</strong> has been successfully received.
 </p>
 
 <div style="background:#fef3c7;border-left:4px solid #f59e0b;padding:12px 16px;margin:20px 0;border-radius:4px;color:#92400e;font-size:14px">
@@ -179,7 +179,7 @@ Your registration request for <strong>Aagaaz 2K26</strong> has been successfully
 
 <tr>
 <td style="padding:6px 0"><strong>Event</strong></td>
-<td>Aagaaz 2K26</td>
+<td>Aaghaz 2K26</td>
 </tr>
 
 <tr>
@@ -224,7 +224,7 @@ Geeta University
 <!-- FOOTER -->
 <tr>
 <td style="background:#111827;color:#9ca3af;text-align:center;padding:14px;font-size:12px">
-© 2026 Geeta University — Aagaaz 2K26
+© 2026 Geeta University — Aaghaz 2K26
 </td>
 </tr>
 
@@ -241,7 +241,7 @@ Geeta University
     if (process.env.ADMIN_EMAIL) {
       try {
         await transporter.sendMail({
-          from: `"Aagaaz 2K26" <${process.env.EMAIL_USER}>`,
+          from: `"Aaghaz 2K26" <${process.env.EMAIL_USER}>`,
           to: process.env.ADMIN_EMAIL,
           subject: `New Student Pass Awaiting Approval - ${name}`,
           html: `

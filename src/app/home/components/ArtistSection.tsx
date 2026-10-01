@@ -63,7 +63,7 @@ export default function ArtistSection() {
               {/* Image Container with Concert Photography */}
               <div className="relative aspect-[2/3] w-full bg-neutral-950 overflow-hidden">
                 <Image
-                  src="/poster.jpeg"
+                  src="/poster2.jpeg"
                   alt="Sunanda Sharma Star Night Concert Poster"
                   fill
                   className="object-contain sm:object-cover object-center transition-transform duration-700 group-hover:scale-[1.02]"

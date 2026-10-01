@@ -33,9 +33,9 @@ export async function POST(req: Request) {
     const qrBuffer = Buffer.from(base64Data, "base64");
 
     await transporter.sendMail({
-      from: `"Aagaaz 2K26" <${process.env.EMAIL_USER}>`,
+      from: `"Aaghaz 2K26" <${process.env.EMAIL_USER}>`,
       to: email,
-      subject: "Your Aagaaz 2K26 Check-in QR Code",
+      subject: "Your Aaghaz 2K26 Check-in QR Code",
       html: `
 <div style="background:#0f172a;padding:30px 10px;font-family:Arial,Helvetica,sans-serif">
 
@@ -47,7 +47,7 @@ style="background:#111827;border-radius:14px;overflow:hidden;box-shadow:0 10px 3
 <td style="background:linear-gradient(135deg,#2563eb,#1e40af);padding:30px;text-align:center;color:white">
 
 <h1 style="margin:0;font-size:28px;letter-spacing:1px">
-Aagaaz 2K26
+Aaghaz 2K26
 </h1>
 
 <p style="margin:6px 0 0 0;font-size:14px">
@@ -65,7 +65,7 @@ Geeta University
 
 <p>Hello <strong>${name}</strong>,</p>
 
-<p>Your entry pass for <strong>Aagaaz 2K26</strong> has been successfully verified.</p>
+<p>Your entry pass for <strong>Aaghaz 2K26</strong> has been successfully verified.</p>
 
 
 <!-- Ticket Box -->
@@ -108,7 +108,7 @@ Please present this QR code at the entry gate during the event.
 
 <tr>
 <td style="padding:6px 0"><strong>Event</strong></td>
-<td>Aagaaz 2K26</td>
+<td>Aaghaz 2K26</td>
 </tr>
 
 <tr>
@@ -154,7 +154,7 @@ Please present this QR code at the entry gate during the event.
 
 <div style="margin-top:20px">
 
-<a href="${process.env.NEXTAUTH_URL || 'https://aagaaz-gu.vercel.app'}" 
+<a href="${process.env.NEXTAUTH_URL || 'https://aaghaz-gu.vercel.app'}" 
 style="display:inline-block;background:#2563eb;color:white;padding:10px 18px;border-radius:6px;text-decoration:none;font-size:14px">
 Visit Event Website
 </a>
@@ -174,7 +174,7 @@ Geeta University
 <tr>
 <td style="background:#1f2937;color:#9ca3af;text-align:center;padding:16px;font-size:12px">
 
-© 2026 Geeta University | Aagaaz 2K26
+© 2026 Geeta University | Aaghaz 2K26
 
 </td>
 </tr>
