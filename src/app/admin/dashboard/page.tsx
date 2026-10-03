@@ -28,6 +28,11 @@ import {
   CreditCard,
   AlertTriangle,
   Loader2,
+  PowerOff,
+  Play,
+  Lock,
+  Unlock,
+  ShieldAlert,
 } from "lucide-react";
 import {
   Dialog,
@@ -108,6 +113,11 @@ export default function AdminDashboard() {
   const [rejectReason, setRejectReason] = useState("");
   const [showRejectBox, setShowRejectBox] = useState(false);
 
+  // Registration stop toggle states
+  const [isRegClosed, setIsRegClosed] = useState(false);
+  const [isTogglingReg, setIsTogglingReg] = useState(false);
+  const [confirmToggleOpen, setConfirmToggleOpen] = useState(false);
+
   const [stats, setStats] = useState({
     totalRegistrations: 0,
     totalVerified: 0,
@@ -124,6 +134,7 @@ export default function AdminDashboard() {
   useEffect(() => {
     if (status === "authenticated" && session?.user?.role === "admin") {
       fetchData();
+      fetchRegStatus();
     }
   }, [status, session]);
 
@@ -134,6 +145,49 @@ export default function AdminDashboard() {
   if (!session || session.user.role !== "admin") {
     return <AccessDenied />;
   }
+
+  const fetchRegStatus = async () => {
+    try {
+      const res = await fetch("/api/admin/settings");
+      if (res.ok) {
+        const data = await res.json();
+        setIsRegClosed(!!data.isClosed);
+      }
+    } catch (err) {
+      console.error("Failed to load registration status:", err);
+    }
+  };
+
+  const handleToggleRegistration = async (closeRegistration: boolean) => {
+    setIsTogglingReg(true);
+    try {
+      const res = await fetch("/api/admin/settings", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          isClosed: closeRegistration,
+          message: closeRegistration
+            ? "Registrations are currently closed by the event administration."
+            : "Registrations are open.",
+        }),
+      });
+      const data = await res.json();
+      if (!res.ok || !data.success) {
+        throw new Error(data.message || "Failed to update registration status");
+      }
+      setIsRegClosed(!!data.isClosed);
+      setConfirmToggleOpen(false);
+      if (closeRegistration) {
+        toast.success("🛑 Registrations STOPPED for everyone successfully!");
+      } else {
+        toast.success("✅ Registrations OPENED for users successfully!");
+      }
+    } catch (err: any) {
+      toast.error(err.message || "Failed to toggle registration status");
+    } finally {
+      setIsTogglingReg(false);
+    }
+  };
 
   const fetchData = async () => {
     setIsLoading(true);
@@ -450,6 +504,58 @@ export default function AdminDashboard() {
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
+          </div>
+        </div>
+
+        {/* Emergency Registration Control Bar */}
+        <div className={`p-4 sm:p-5 rounded-2xl border transition-all duration-300 shadow-md flex flex-col md:flex-row items-start md:items-center justify-between gap-4 ${
+          isRegClosed
+            ? "bg-gradient-to-r from-rose-950/50 via-neutral-900 to-rose-950/30 border-rose-500/50 text-rose-100"
+            : "bg-gradient-to-r from-emerald-950/40 via-neutral-900 to-emerald-950/20 border-emerald-500/40 text-emerald-100"
+        }`}>
+          <div className="flex items-center gap-3.5">
+            <div className={`w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 shadow-inner ${
+              isRegClosed 
+                ? "bg-rose-500/20 text-rose-400 border border-rose-500/40 shadow-rose-950/50" 
+                : "bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 shadow-emerald-950/50"
+            }`}>
+              {isRegClosed ? <PowerOff className="w-6 h-6 animate-pulse" /> : <ShieldAlert className="w-6 h-6" />}
+            </div>
+            <div>
+              <div className="flex items-center gap-2">
+                <span className={`inline-block w-2.5 h-2.5 rounded-full ${isRegClosed ? "bg-rose-500 animate-ping" : "bg-emerald-400 animate-pulse"}`} />
+                <span className="text-xs font-mono font-bold tracking-wider uppercase">
+                  {isRegClosed ? "⛔ REGISTRATIONS ARE STOPPED FOR EVERYONE" : "🟢 REGISTRATIONS ARE CURRENTLY LIVE & ACCEPTING PASS REQUESTS"}
+                </span>
+              </div>
+              <p className="text-xs text-neutral-400 dark:text-neutral-300 mt-1">
+                {isRegClosed
+                  ? "Form submissions are blocked on the website. No new students or guests can register."
+                  : "Anyone visiting the registration page can fill their details and submit ID proofs."}
+              </p>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-2 w-full md:w-auto shrink-0">
+            {isRegClosed ? (
+              <Button
+                onClick={() => handleToggleRegistration(false)}
+                disabled={isTogglingReg}
+                className="w-full md:w-auto px-5 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold font-mono tracking-wider uppercase rounded-xl flex items-center justify-center gap-2 shadow-lg cursor-pointer"
+              >
+                {isTogglingReg ? <Loader2 className="w-4 h-4 animate-spin" /> : <Play className="w-4 h-4 fill-current" />}
+                <span>Resume Registrations</span>
+              </Button>
+            ) : (
+              <Button
+                onClick={() => setConfirmToggleOpen(true)}
+                disabled={isTogglingReg}
+                className="w-full md:w-auto px-5 py-2.5 bg-rose-600 hover:bg-rose-500 text-white text-xs font-bold font-mono tracking-wider uppercase rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-rose-950/60 cursor-pointer"
+              >
+                {isTogglingReg ? <Loader2 className="w-4 h-4 animate-spin" /> : <PowerOff className="w-4 h-4" />}
+                <span>Stop Registrations for Everyone</span>
+              </Button>
+            )}
           </div>
         </div>
 
@@ -953,6 +1059,52 @@ export default function AdminDashboard() {
                 />
               </div>
             )}
+          </DialogContent>
+        </Dialog>
+
+        {/* Confirmation Modal to Stop Registrations */}
+        <Dialog open={confirmToggleOpen} onOpenChange={setConfirmToggleOpen}>
+          <DialogContent className="sm:max-w-md bg-white dark:bg-[#101015] border-neutral-200 dark:border-neutral-800 p-6">
+            <DialogHeader>
+              <div className="w-12 h-12 rounded-2xl bg-rose-500/20 text-rose-500 flex items-center justify-center mb-3">
+                <PowerOff className="w-6 h-6" />
+              </div>
+              <DialogTitle className="text-lg font-bold text-neutral-900 dark:text-white">
+                Stop Registrations for Everyone?
+              </DialogTitle>
+            </DialogHeader>
+
+            <div className="space-y-3 py-2 text-sm text-neutral-600 dark:text-neutral-400">
+              <p>
+                Are you sure you want to stop accepting registrations?
+              </p>
+              <ul className="list-disc pl-5 space-y-1 text-xs text-neutral-500 dark:text-neutral-400 font-mono">
+                <li>The registration form will immediately close on the website.</li>
+                <li>Any new API registration requests will be blocked.</li>
+                <li>You can re-open registrations at any time from this dashboard.</li>
+              </ul>
+            </div>
+
+            <div className="flex items-center justify-end gap-3 pt-4 border-t border-neutral-100 dark:border-neutral-800">
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setConfirmToggleOpen(false)}
+                disabled={isTogglingReg}
+                className="cursor-pointer text-xs"
+              >
+                Cancel
+              </Button>
+              <Button
+                size="sm"
+                onClick={() => handleToggleRegistration(true)}
+                disabled={isTogglingReg}
+                className="bg-rose-600 hover:bg-rose-700 text-white font-bold text-xs cursor-pointer shadow-md"
+              >
+                {isTogglingReg ? <Loader2 className="w-3.5 h-3.5 animate-spin mr-1.5" /> : <PowerOff className="w-3.5 h-3.5 mr-1.5" />}
+                Yes, Stop Registrations
+              </Button>
+            </div>
           </DialogContent>
         </Dialog>
 

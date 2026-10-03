@@ -33,6 +33,8 @@ import {
   IdCard,
   CreditCard,
   AlertCircle,
+  TicketX,
+  HeartHandshake,
 } from "lucide-react";
 import {
   getAvailableStates,
@@ -41,11 +43,26 @@ import {
 } from "@/lib/schoolsData";
 import { isPassRegistrationClosed, PASS_CLOSED_MESSAGE } from "@/lib/passConfig";
 import Link from "next/link";
-import { TicketX, HeartHandshake } from "lucide-react";
+import { useEffect } from "react";
 
 export default function GuestRegistration() {
   const router = useRouter();
-  const isClosed = isPassRegistrationClosed();
+  const [isClosed, setIsClosed] = useState(isPassRegistrationClosed());
+  const [closedMessage, setClosedMessage] = useState(PASS_CLOSED_MESSAGE.description);
+
+  useEffect(() => {
+    fetch("/api/settings/registration-status")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data && typeof data.isClosed === "boolean") {
+          setIsClosed(data.isClosed);
+          if (data.message) {
+            setClosedMessage(data.message);
+          }
+        }
+      })
+      .catch((err) => console.error("Could not fetch registration status:", err));
+  }, []);
 
   // Form states
   const [formData, setFormData] = useState({

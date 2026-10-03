@@ -3,7 +3,7 @@
  * Deadline: 12:30 PM IST on October 3, 2026
  */
 
-export const REGISTRATION_CLOSE_TIMESTAMP = new Date("2026-10-03T12:59:00+05:30").getTime();
+export const REGISTRATION_CLOSE_TIMESTAMP = new Date("2026-10-03T12:30:00+05:30").getTime();
 
 export const PASS_CLOSED_MESSAGE = {
   title: "Passes Distributed",

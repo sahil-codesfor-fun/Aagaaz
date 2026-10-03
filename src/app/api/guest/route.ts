@@ -5,14 +5,16 @@ import { v4 as uuidv4 } from "uuid";
 import nodemailer from "nodemailer";
 import QRCode from "qrcode";
 import { isPassRegistrationClosed, PASS_CLOSED_MESSAGE } from "@/lib/passConfig";
+import { getRegistrationStatus } from "@/lib/settings";
 
 export async function POST(req: Request) {
   try {
-    if (isPassRegistrationClosed()) {
+    const regStatus = await getRegistrationStatus();
+    if (regStatus.isClosed || isPassRegistrationClosed()) {
       return NextResponse.json(
         {
           success: false,
-          message: PASS_CLOSED_MESSAGE.description,
+          message: regStatus.message || PASS_CLOSED_MESSAGE.description,
         },
         { status: 403 }
       );
