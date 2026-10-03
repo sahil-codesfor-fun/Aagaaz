@@ -1,11 +1,15 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { Ticket, QrCode, ShieldCheck, Hash, Layers, CheckCircle2, ArrowRight, Shield, Zap, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { isPassRegistrationClosed } from "@/lib/passConfig";
+import PassClosedModal from "@/components/PassClosedModal";
 
 export default function PassDistributionSection() {
+  const [showClosedModal, setShowClosedModal] = useState(false);
   const steps = [
     {
       num: "01",
@@ -209,20 +213,36 @@ export default function PassDistributionSection() {
             <div className="text-xs text-neutral-500 font-medium">
               Need assistance with your pass registration or UTR verification? Contact team DSW.
             </div>
-            <Button
-              asChild
-              size="lg"
-              className="group bg-neutral-950 hover:bg-neutral-800 text-white text-xs font-bold px-7 rounded-xl shadow-md active:scale-98 transition-all"
-            >
-              <Link href="/register/guest" className="flex items-center gap-2">
-                <span>Book Guest Pass Now</span>
-                <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
-              </Link>
-            </Button>
+            {isPassRegistrationClosed() ? (
+              <Button
+                size="lg"
+                onClick={() => setShowClosedModal(true)}
+                className="group bg-neutral-950 hover:bg-neutral-800 text-white text-xs font-bold px-7 rounded-xl shadow-md active:scale-98 transition-all cursor-pointer"
+              >
+                <div className="flex items-center gap-2">
+                  <span>Passes Distributed</span>
+                  <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+                </div>
+              </Button>
+            ) : (
+              <Button
+                asChild
+                size="lg"
+                className="group bg-neutral-950 hover:bg-neutral-800 text-white text-xs font-bold px-7 rounded-xl shadow-md active:scale-98 transition-all"
+              >
+                <Link href="/register/guest" className="flex items-center gap-2">
+                  <span>Book Guest Pass Now</span>
+                  <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+                </Link>
+              </Button>
+            )}
           </div>
         </motion.div>
 
       </div>
+
+      {/* Passes Closed Modal */}
+      <PassClosedModal isOpen={showClosedModal} onClose={() => setShowClosedModal(false)} />
     </section>
   );
 }

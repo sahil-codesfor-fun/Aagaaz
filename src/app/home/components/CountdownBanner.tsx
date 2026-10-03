@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Clock, Ticket, Sparkles, MapPin, Calendar } from "lucide-react";
 import Link from "next/link";
+import { isPassRegistrationClosed } from "@/lib/passConfig";
+import PassClosedModal from "@/components/PassClosedModal";
 
 const EVENT_TARGET_DATE = new Date("2026-10-02T17:00:00+05:30").getTime();
 
@@ -25,6 +27,7 @@ const calculateTimeLeft = () => {
 export default function CountdownBanner() {
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
   const [mounted, setMounted] = useState(false);
+  const [showClosedModal, setShowClosedModal] = useState(false);
 
   useEffect(() => {
     setMounted(true);
@@ -95,16 +98,30 @@ export default function CountdownBanner() {
 
         {/* Right: Quick Pass CTA */}
         <div className="flex items-center gap-3">
-          <Link
-            href="/register/guest"
-            className="px-6 py-3 rounded-xl bg-gradient-to-r from-amber-400 via-orange-500 to-amber-500 text-neutral-950 text-xs font-black font-mono tracking-wider uppercase hover:brightness-110 transition-all shadow-lg active:scale-95 flex items-center gap-2"
-          >
-            <Ticket className="w-4 h-4 text-neutral-950" />
-            <span>Claim Entry Pass</span>
-          </Link>
+          {isPassRegistrationClosed() ? (
+            <button
+              type="button"
+              onClick={() => setShowClosedModal(true)}
+              className="px-6 py-3 rounded-xl bg-gradient-to-r from-amber-400 via-orange-500 to-amber-500 text-neutral-950 text-xs font-black font-mono tracking-wider uppercase hover:brightness-110 transition-all shadow-lg active:scale-95 flex items-center gap-2 cursor-pointer"
+            >
+              <Ticket className="w-4 h-4 text-neutral-950" />
+              <span>Passes Distributed</span>
+            </button>
+          ) : (
+            <Link
+              href="/register/guest"
+              className="px-6 py-3 rounded-xl bg-gradient-to-r from-amber-400 via-orange-500 to-amber-500 text-neutral-950 text-xs font-black font-mono tracking-wider uppercase hover:brightness-110 transition-all shadow-lg active:scale-95 flex items-center gap-2"
+            >
+              <Ticket className="w-4 h-4 text-neutral-950" />
+              <span>Claim Entry Pass</span>
+            </Link>
+          )}
         </div>
 
       </div>
+
+      {/* Passes Closed Modal */}
+      <PassClosedModal isOpen={showClosedModal} onClose={() => setShowClosedModal(false)} />
     </div>
   );
 }

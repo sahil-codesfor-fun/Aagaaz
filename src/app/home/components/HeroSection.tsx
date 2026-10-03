@@ -14,10 +14,13 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "next-themes";
+import { isPassRegistrationClosed } from "@/lib/passConfig";
+import PassClosedModal from "@/components/PassClosedModal";
 
 export default function HeroSection() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [mounted, setMounted] = useState(false);
+  const [showClosedModal, setShowClosedModal] = useState(false);
   const { resolvedTheme } = useTheme();
 
   // Scroll parallax for background typography
@@ -261,17 +264,32 @@ export default function HeroSection() {
               className="flex flex-wrap items-center gap-3.5 pt-1"
             >
               {/* Register for Entry Pass Button */}
-              <Link
-                href="/register/guest"
-                className={`group flex items-center justify-center gap-2 rounded-xl px-5 py-3 sm:px-6 sm:py-3.5 font-bold text-xs sm:text-sm shadow-md transition-all duration-300 active:scale-95 cursor-pointer relative z-10 ${
-                  isDark
-                    ? "golden-obsidian-btn hover:-translate-y-0.5"
-                    : "bg-neutral-900 hover:bg-neutral-800 text-white"
-                }`}
-              >
-                <span>Register for Entry Pass</span>
-                <ArrowRight className="w-4 h-4 text-amber-300 transition-transform duration-200 group-hover:translate-x-1.5" />
-              </Link>
+              {isPassRegistrationClosed() ? (
+                <button
+                  type="button"
+                  onClick={() => setShowClosedModal(true)}
+                  className={`group flex items-center justify-center gap-2 rounded-xl px-5 py-3 sm:px-6 sm:py-3.5 font-bold text-xs sm:text-sm shadow-md transition-all duration-300 active:scale-95 cursor-pointer relative z-10 ${
+                    isDark
+                      ? "golden-obsidian-btn hover:-translate-y-0.5"
+                      : "bg-neutral-900 hover:bg-neutral-800 text-white"
+                  }`}
+                >
+                  <span>Register for Entry Pass</span>
+                  <ArrowRight className="w-4 h-4 text-amber-300 transition-transform duration-200 group-hover:translate-x-1.5" />
+                </button>
+              ) : (
+                <Link
+                  href="/register/guest"
+                  className={`group flex items-center justify-center gap-2 rounded-xl px-5 py-3 sm:px-6 sm:py-3.5 font-bold text-xs sm:text-sm shadow-md transition-all duration-300 active:scale-95 cursor-pointer relative z-10 ${
+                    isDark
+                      ? "golden-obsidian-btn hover:-translate-y-0.5"
+                      : "bg-neutral-900 hover:bg-neutral-800 text-white"
+                  }`}
+                >
+                  <span>Register for Entry Pass</span>
+                  <ArrowRight className="w-4 h-4 text-amber-300 transition-transform duration-200 group-hover:translate-x-1.5" />
+                </Link>
+              )}
 
               {/* Festival Schedule Button */}
               <Link
@@ -435,17 +453,32 @@ export default function HeroSection() {
                     </div>
 
                     {/* Get Pass Pill Button - Larger & Ultra-Responsive */}
-                    <Link
-                      href="/register/guest"
-                      className={`group px-5 py-2.5 sm:px-6 sm:py-3 rounded-full font-black font-mono text-xs sm:text-sm transition-all duration-300 shadow-md cursor-pointer relative z-10 flex items-center gap-2 active:scale-95 shrink-0 ${
-                        isDark
-                          ? "golden-obsidian-btn hover:-translate-y-0.5"
-                          : "bg-gradient-to-r from-amber-400 via-amber-500 to-orange-500 hover:brightness-110 text-neutral-950 font-bold"
-                      }`}
-                    >
-                      <span>Get Pass</span>
-                      <ArrowRight className={`w-4 h-4 transition-transform duration-200 group-hover:translate-x-1.5 ${isDark ? "text-amber-300" : "text-neutral-950"}`} />
-                    </Link>
+                    {isPassRegistrationClosed() ? (
+                      <button
+                        type="button"
+                        onClick={() => setShowClosedModal(true)}
+                        className={`group px-5 py-2.5 sm:px-6 sm:py-3 rounded-full font-black font-mono text-xs sm:text-sm transition-all duration-300 shadow-md cursor-pointer relative z-10 flex items-center gap-2 active:scale-95 shrink-0 ${
+                          isDark
+                            ? "golden-obsidian-btn hover:-translate-y-0.5"
+                            : "bg-gradient-to-r from-amber-400 via-amber-500 to-orange-500 hover:brightness-110 text-neutral-950 font-bold"
+                        }`}
+                      >
+                        <span>Get Pass</span>
+                        <ArrowRight className={`w-4 h-4 transition-transform duration-200 group-hover:translate-x-1.5 ${isDark ? "text-amber-300" : "text-neutral-950"}`} />
+                      </button>
+                    ) : (
+                      <Link
+                        href="/register/guest"
+                        className={`group px-5 py-2.5 sm:px-6 sm:py-3 rounded-full font-black font-mono text-xs sm:text-sm transition-all duration-300 shadow-md cursor-pointer relative z-10 flex items-center gap-2 active:scale-95 shrink-0 ${
+                          isDark
+                            ? "golden-obsidian-btn hover:-translate-y-0.5"
+                            : "bg-gradient-to-r from-amber-400 via-amber-500 to-orange-500 hover:brightness-110 text-neutral-950 font-bold"
+                        }`}
+                      >
+                        <span>Get Pass</span>
+                        <ArrowRight className={`w-4 h-4 transition-transform duration-200 group-hover:translate-x-1.5 ${isDark ? "text-amber-300" : "text-neutral-950"}`} />
+                      </Link>
+                    )}
                   </div>
                 </div>
 
@@ -456,6 +489,9 @@ export default function HeroSection() {
 
         </div>
       </div>
+
+      {/* Passes Closed Modal */}
+      <PassClosedModal isOpen={showClosedModal} onClose={() => setShowClosedModal(false)} />
     </section>
   );
 }

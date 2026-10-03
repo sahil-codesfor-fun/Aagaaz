@@ -9,6 +9,8 @@ import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTheme } from "next-themes";
 import { useSession, signOut } from "next-auth/react";
+import { isPassRegistrationClosed } from "@/lib/passConfig";
+import PassClosedModal from "@/components/PassClosedModal";
 
 export const Header = () => {
   const { data: session } = useSession();
@@ -16,6 +18,7 @@ export const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [hoveredTab, setHoveredTab] = useState<string | null>(null);
   const [mounted, setMounted] = useState(false);
+  const [showClosedModal, setShowClosedModal] = useState(false);
   const { theme, setTheme, resolvedTheme } = useTheme();
   const pathname = usePathname();
   const isHomePage = pathname === "/";
@@ -136,6 +139,17 @@ export const Header = () => {
                 <LogOut className="w-3.5 h-3.5 mr-1" /> Logout
               </Button>
             </div>
+          ) : isPassRegistrationClosed() ? (
+            <Button
+              size="sm"
+              onClick={() => setShowClosedModal(true)}
+              className="group bg-gradient-to-r from-neutral-900 to-neutral-800 dark:golden-obsidian-btn hover:from-neutral-800 hover:to-neutral-700 text-white text-xs font-bold px-4 py-2 rounded-full shadow-sm hover:shadow-md transition-all duration-200 active:scale-95 cursor-pointer"
+            >
+              <div className="flex items-center gap-1.5">
+                <span>Get Pass</span>
+                <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </div>
+            </Button>
           ) : (
             <Button
               asChild
@@ -224,6 +238,16 @@ export const Header = () => {
                       <LogOut className="w-3.5 h-3.5" /> Logout
                     </Button>
                   </>
+                ) : isPassRegistrationClosed() ? (
+                  <Button
+                    onClick={() => {
+                      setMobileMenuOpen(false);
+                      setShowClosedModal(true);
+                    }}
+                    className="w-full bg-neutral-900 text-white text-xs justify-center dark:golden-obsidian-btn cursor-pointer"
+                  >
+                    Get Entry Pass →
+                  </Button>
                 ) : (
                   <Button asChild className="w-full bg-neutral-900 text-white text-xs justify-center dark:golden-obsidian-btn">
                     <Link href="/register/guest" onClick={() => setMobileMenuOpen(false)}>
@@ -236,6 +260,9 @@ export const Header = () => {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Passes Closed Modal */}
+      <PassClosedModal isOpen={showClosedModal} onClose={() => setShowClosedModal(false)} />
     </header>
   );
 };

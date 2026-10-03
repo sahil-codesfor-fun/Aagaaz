@@ -18,9 +18,12 @@ import {
   Volume2
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { isPassRegistrationClosed } from "@/lib/passConfig";
+import PassClosedModal from "@/components/PassClosedModal";
 
 export default function EventArtistSection() {
   const [activeTrack, setActiveTrack] = useState<string>("Jaani Tera Naa");
+  const [showClosedModal, setShowClosedModal] = useState<boolean>(false);
 
   const hitTracks = [
     { title: "Jaani Tera Naa", tag: "Blockbuster", type: "Hit Single" },
@@ -144,15 +147,27 @@ export default function EventArtistSection() {
                 </div>
 
                 {/* Direct Action Link */}
-                <Button
-                  asChild
-                  className="w-full bg-gradient-to-r from-amber-400 via-amber-500 to-orange-500 hover:from-amber-500 hover:to-orange-600 text-neutral-950 font-bold text-xs sm:text-sm py-3.5 sm:py-4 rounded-xl shadow-md transition-all dark:golden-obsidian-btn cursor-pointer"
-                >
-                  <Link href="/register/guest" className="flex items-center justify-center gap-2 relative z-10">
-                    <Ticket className="w-4 h-4 text-amber-400" />
-                    <span>Book Pass for Star Night →</span>
-                  </Link>
-                </Button>
+                {isPassRegistrationClosed() ? (
+                  <Button
+                    onClick={() => setShowClosedModal(true)}
+                    className="w-full bg-gradient-to-r from-amber-400 via-amber-500 to-orange-500 hover:from-amber-500 hover:to-orange-600 text-neutral-950 font-bold text-xs sm:text-sm py-3.5 sm:py-4 rounded-xl shadow-md transition-all dark:golden-obsidian-btn cursor-pointer"
+                  >
+                    <div className="flex items-center justify-center gap-2 relative z-10">
+                      <Ticket className="w-4 h-4 text-amber-400" />
+                      <span>Passes Distributed</span>
+                    </div>
+                  </Button>
+                ) : (
+                  <Button
+                    asChild
+                    className="w-full bg-gradient-to-r from-amber-400 via-amber-500 to-orange-500 hover:from-amber-500 hover:to-orange-600 text-neutral-950 font-bold text-xs sm:text-sm py-3.5 sm:py-4 rounded-xl shadow-md transition-all dark:golden-obsidian-btn cursor-pointer"
+                  >
+                    <Link href="/register/guest" className="flex items-center justify-center gap-2 relative z-10">
+                      <Ticket className="w-4 h-4 text-amber-400" />
+                      <span>Book Pass for Star Night →</span>
+                    </Link>
+                  </Button>
+                )}
               </div>
 
             </div>
@@ -303,6 +318,9 @@ export default function EventArtistSection() {
         </div>
 
       </div>
+
+      {/* Passes Closed Modal */}
+      <PassClosedModal isOpen={showClosedModal} onClose={() => setShowClosedModal(false)} />
     </section>
   );
 }

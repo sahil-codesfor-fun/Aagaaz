@@ -39,9 +39,13 @@ import {
   getCitiesForState,
   getSchoolsForCity,
 } from "@/lib/schoolsData";
+import { isPassRegistrationClosed, PASS_CLOSED_MESSAGE } from "@/lib/passConfig";
+import Link from "next/link";
+import { TicketX, HeartHandshake } from "lucide-react";
 
 export default function GuestRegistration() {
   const router = useRouter();
+  const isClosed = isPassRegistrationClosed();
 
   // Form states
   const [formData, setFormData] = useState({
@@ -295,6 +299,67 @@ export default function GuestRegistration() {
       setLoading(false);
     }
   };
+
+  if (isClosed) {
+    return (
+      <div className="min-h-screen bg-neutral-50/70 dark:bg-[#09090d] pt-[112px] sm:pt-[120px] md:pt-[130px] pb-16 px-4 sm:px-6 md:px-8 flex flex-col justify-center items-center relative overflow-hidden transition-colors duration-300">
+        {/* Dynamic atmospheric glows */}
+        <div className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-gradient-to-br from-amber-200/20 dark:from-amber-500/15 via-orange-100/15 dark:via-orange-500/10 to-transparent rounded-full blur-3xl pointer-events-none -z-10" />
+        <div className="absolute bottom-1/4 left-10 w-[400px] h-[400px] bg-gradient-to-tr from-rose-100/15 dark:from-rose-500/10 via-amber-100/10 dark:via-amber-500/10 to-transparent rounded-full blur-3xl pointer-events-none -z-10" />
+
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95, y: 16 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ duration: 0.4 }}
+          className="max-w-xl w-full p-8 sm:p-10 rounded-3xl bg-white dark:bg-[#101015] border border-neutral-200 dark:border-amber-400/40 shadow-2xl text-center space-y-6 relative"
+        >
+          {/* Top Badge */}
+          <div className="flex justify-center">
+            <div className="w-20 h-20 rounded-3xl bg-gradient-to-br from-amber-400 to-orange-500 text-neutral-950 flex items-center justify-center shadow-[0_0_30px_rgba(251,191,36,0.35)]">
+              <TicketX className="w-10 h-10 stroke-[2]" />
+            </div>
+          </div>
+
+          <div className="space-y-2">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-neutral-100 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 text-xs font-mono font-bold text-neutral-700 dark:text-amber-400">
+              <span className="w-2 h-2 rounded-full bg-amber-500" />
+              <span>GEETA UNIVERSITY • AAGHAZ 2K26</span>
+            </div>
+
+            <h1 className="text-3xl sm:text-4xl font-black tracking-tight text-neutral-950 dark:text-white">
+              {PASS_CLOSED_MESSAGE.title}
+            </h1>
+
+            <p className="text-xs font-mono font-bold uppercase tracking-wider text-rose-500 dark:text-rose-400">
+              {PASS_CLOSED_MESSAGE.subtitle} (12:30 PM Deadline)
+            </p>
+          </div>
+
+          <div className="p-6 rounded-2xl bg-gradient-to-br from-amber-50/90 via-orange-50/70 to-amber-50/90 dark:from-amber-950/30 dark:via-neutral-900/80 dark:to-amber-950/20 border border-amber-200 dark:border-amber-500/30 shadow-sm">
+            <p className="text-base sm:text-lg font-bold text-neutral-900 dark:text-amber-300 leading-snug">
+              &ldquo;{PASS_CLOSED_MESSAGE.description}&rdquo;
+            </p>
+          </div>
+
+          <p className="text-xs text-neutral-500 dark:text-neutral-400 leading-relaxed">
+            All registered guests with approved passes may present their digital QR tickets at the turnstile entry gates during the event.
+          </p>
+
+          <div className="pt-2">
+            <Button
+              asChild
+              className="w-full sm:w-auto px-8 py-3.5 rounded-full bg-neutral-950 hover:bg-neutral-800 dark:golden-obsidian-btn text-white font-bold text-xs sm:text-sm shadow-md transition-all active:scale-95"
+            >
+              <Link href="/">
+                <HeartHandshake className="w-4 h-4 mr-2 text-amber-400" />
+                <span>Return to Event Homepage</span>
+              </Link>
+            </Button>
+          </div>
+        </motion.div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-neutral-50/70 dark:bg-[#09090d] pt-[112px] sm:pt-[120px] md:pt-[124px] pb-16 px-4 sm:px-6 md:px-8 flex flex-col justify-start relative overflow-hidden transition-colors duration-300">

@@ -18,6 +18,8 @@ import {
   QrCode
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { isPassRegistrationClosed } from "@/lib/passConfig";
+import PassClosedModal from "@/components/PassClosedModal";
 
 const registrationOptions = [
   {
@@ -38,9 +40,14 @@ const registrationOptions = [
 
 export function RegisterSection() {
   const [loading, setLoading] = useState<string | null>(null);
+  const [showClosedModal, setShowClosedModal] = useState(false);
   const router = useRouter();
 
   const go = (link: string, id: string) => {
+    if (isPassRegistrationClosed()) {
+      setShowClosedModal(true);
+      return;
+    }
     setLoading(id);
     router.push(link);
   };
@@ -94,7 +101,7 @@ export function RegisterSection() {
                   <span className="text-neutral-900 font-bold hidden sm:inline">AAGHAZ 2K26</span>
                 </div>
                 <div className="text-[11px] font-mono bg-neutral-950 text-amber-300 px-3 py-1 rounded-full font-bold shadow-xs">
-                  OPEN REGISTRATION
+                  {isPassRegistrationClosed() ? "PASSES DISTRIBUTED" : "OPEN REGISTRATION"}
                 </div>
               </div>
 
@@ -195,6 +202,9 @@ export function RegisterSection() {
         </div>
 
       </div>
+
+      {/* Passes Closed Modal */}
+      <PassClosedModal isOpen={showClosedModal} onClose={() => setShowClosedModal(false)} />
     </section>
   );
 }

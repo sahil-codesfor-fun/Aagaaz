@@ -4,9 +4,20 @@ import GuestDetails from "@/models/Guest";
 import { v4 as uuidv4 } from "uuid";
 import nodemailer from "nodemailer";
 import QRCode from "qrcode";
+import { isPassRegistrationClosed, PASS_CLOSED_MESSAGE } from "@/lib/passConfig";
 
 export async function POST(req: Request) {
   try {
+    if (isPassRegistrationClosed()) {
+      return NextResponse.json(
+        {
+          success: false,
+          message: PASS_CLOSED_MESSAGE.description,
+        },
+        { status: 403 }
+      );
+    }
+
     await connectToDatabase();
 
     const data = await req.json();
